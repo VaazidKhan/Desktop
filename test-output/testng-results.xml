@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="0" failed="0" skipped="1">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-06-19T11:28:56 IST" name="Default suite" finished-at="2025-06-19T11:28:56 IST" duration-ms="35">
+    <groups>
+    </groups>
+    <test started-at="2025-06-19T11:28:56 IST" name="Default test" finished-at="2025-06-19T11:28:56 IST" duration-ms="35">
+      <class name="wpf.test.OpenAppTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:wpf.test.OpenAppTest@1fdfafd2]" started-at="2025-06-19T11:26:04 IST" name="setUp" finished-at="2025-06-19T11:28:56 IST" duration-ms="171708" status="FAIL">
+          <exception class="java.lang.RuntimeException">
+            <message>
+              <![CDATA[Test setup failed]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.RuntimeException: Test setup failed
+at winAppDriverComponents.BaseTest.setUp(BaseTest.java:30)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:358)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+Caused by: java.lang.RuntimeException: Failed to attach WindowsDriver
+at winAppDriverComponents.BaseTest.initializeDriver(BaseTest.java:120)
+at winAppDriverComponents.BaseTest.startWinAppDriver(BaseTest.java:74)
+at winAppDriverComponents.BaseTest.setUp(BaseTest.java:26)
+... 17 more
+Caused by: java.lang.RuntimeException: ❌ All attempts to attach with appTopLevelWindow failed
+at winAppDriverComponents.BaseTest.initializeDriver(BaseTest.java:117)
+... 19 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.RuntimeException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="beforeClass()[pri:0, instance:wpf.test.OpenAppTest@1fdfafd2]" started-at="2025-06-19T11:28:56 IST" name="beforeClass" finished-at="2025-06-19T11:28:56 IST" duration-ms="0" status="SKIP">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method signature="signInApplication()[pri:0, instance:wpf.test.OpenAppTest@1fdfafd2]" started-at="2025-06-19T11:28:56 IST" name="signInApplication" finished-at="2025-06-19T11:28:56 IST" duration-ms="0" status="SKIP">
+          <exception class="java.lang.RuntimeException">
+            <message>
+              <![CDATA[Test setup failed]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.RuntimeException: Test setup failed
+at winAppDriverComponents.BaseTest.setUp(BaseTest.java:30)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:358)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+Caused by: java.lang.RuntimeException: Failed to attach WindowsDriver
+at winAppDriverComponents.BaseTest.initializeDriver(BaseTest.java:120)
+at winAppDriverComponents.BaseTest.startWinAppDriver(BaseTest.java:74)
+at winAppDriverComponents.BaseTest.setUp(BaseTest.java:26)
+... 17 more
+Caused by: java.lang.RuntimeException: ❌ All attempts to attach with appTopLevelWindow failed
+at winAppDriverComponents.BaseTest.initializeDriver(BaseTest.java:117)
+... 19 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.RuntimeException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- signInApplication -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:wpf.test.OpenAppTest@1fdfafd2]" started-at="2025-06-19T11:28:56 IST" name="tearDown" finished-at="2025-06-19T11:28:56 IST" duration-ms="0" status="SKIP">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- wpf.test.OpenAppTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

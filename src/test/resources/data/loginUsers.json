@@ -1,0 +1,16 @@
+{
+	"invalidUser":{
+		"username":"invalidusername",
+		"password":"Welcome1"
+	},
+	
+	"invalidPassword":{
+		"username":"servicesampark@gmail.com",
+		"password":"invalidpassword"
+	},
+	
+	"validUser":{
+		"username":"servicesampark@gmail.com",
+		"password":"Welcome1"
+	}
+}
