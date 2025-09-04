@@ -226,7 +226,6 @@ public class ProductCategoriesPage_UnitTest extends BaseTest {
     	fnStartTestCase("fn Logout");
     	categoryView.clickBackButton();
 		dashboard.logout();
-		dashboard.logoutwithoutmenu();
 		fnWriteSteps("Pass", "Application Close Successfully");
 		fnEndTestCase();
 	}

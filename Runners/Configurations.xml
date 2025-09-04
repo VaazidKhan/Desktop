@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Windows_Retail_Configurations" parallel="false">
+<listeners>
+        <listener class-name="Listeners.Listener"></listener>
+    </listeners>
+	<test name="Functional_Testing" preserve-order="true">
+		<classes>
+			
+			<class name="JBWindows_Configurations.Application_Settings_Test">
+				<methods>
+					<exclude name="fnVerifyFieldVisibility_FieldEnabledorNot" />
+					<exclude name="Showfeedback_after_Create_Billing" />
+					<exclude name="Showfeedback_after_Billing_Invoice" />
+					<exclude name="AddnewCustomer_while_Billing_Estimation_generation_with_Enabling_the_Option" />
+					<exclude name="AddnewCustomer_while_Billing_Estimation_generation_without_Enabling_the_Option" />
+					<exclude name="AddnewCustomer_while_Billing_Invoice_generation_with_Enabling_the_Option"/>
+					<exclude name="AddnewCustomer_while_Billing_Invoice_generation_without_Enabling_the_Option"/>
+					<exclude name="AddnewCustomer_while_Billing_Order_generation_with_Enabling_the_Option"/>
+					<exclude name="AddnewCustomer_while_Billing_Order_generation_without_Enabling_the_Option"/>
+					<exclude name="Show_ItemEditpopup_while_Billing_Invoice"/>
+					<exclude name="Show_ItemEditpopup_while_Billing_Order"/>
+					<exclude name="Show_ItemEditpopup_while_Billing_ReturnInvoice"/>
+					<exclude name="Show_ItemEditpopup_while_Billing_Order_generation_without_enabling_the_option"/>
+					<exclude name="Show_ItemEditpopup_while_Billing_Invoice_generation_without_enabling_the_option"/>
+					<exclude name="Show_ItemEditpopup_while_Billing_ReturnInvoice_generation_without_enabling_the_option"/>
+					
+				</methods>
+			</class>
+			
+			<class name="JBWindows_Configurations.AppUsersTest">
+			<methods>
+			<exclude name="fnVerifyFieldVisibility_FieldEnabledorNot"/>
+			<exclude name="fnUserCreation"/>
+			<exclude name="fnUserEdit"/>
+			</methods>
+			</class> 
+			
+			<class name="JBWindows_Configurations.InvoiceDeliveryTest">
+			<methods>
+			<exclude name="InvoiceDelivery_OptionsEnabled"/>
+			<exclude name="PaymentMode_OptionsEnabled_Validation_of_InvoiceGeneration_with_CardPaymentMode"/>
+			<exclude name="Validation_of_InvoiceGeneration_withCustomer_through_CashPaymentmode"/>
+			<exclude name="Validation_of_InvoiceGeneration_withoutCustomer_through_CashPaymentmode"/>
+			<exclude name="Validation_of_PurchaseInvoiceGeneration"/>
+			<exclude name="Validation_of_PurchaseInvoiceGeneration_with_CardPaymentMode"/>
+			<exclude name="Payment_Modes_Validation_withCustomer"/>
+			<exclude name="Payment_Modes_Validation_withoutCustomer"/>
+			<exclude name="Validation_of_InvoiceGeneration_with_AdvanceReceivedPaymentMode"/>
+			<exclude name="Validation_of_PurchaseInvoiceGeneration_with_AdvancedPaidMode"/>
+			</methods>
+			</class>
+			
+			<class name="JBWindows_Configurations.SalesConfiguration_Test">
+			<methods>
+			<exclude name="OrderCreation_with_SalesOrdertype_as_HomeDelivery"/>
+			<exclude name="EstimationConversion_with_SalesOrdertype_as_HomeDelivery"/>
+			</methods>
+			</class> 
+			
+			
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->

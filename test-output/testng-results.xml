@@ -1,39 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="158" total="159" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-09-04T17:37:14 IST" name="Windows_Retail_Masters" finished-at="2025-09-04T17:38:11 IST" duration-ms="56822">
+  <suite started-at="2025-09-04T18:31:05 IST" name="Suite" finished-at="2025-09-04T18:31:35 IST" duration-ms="29547">
     <groups>
     </groups>
-    <test started-at="2025-09-04T17:37:14 IST" name="Functional_Testing" finished-at="2025-09-04T17:38:11 IST" duration-ms="56822">
+    <test started-at="2025-09-04T18:31:05 IST" name="Test" finished-at="2025-09-04T18:31:35 IST" duration-ms="29547">
       <class name="JBWindows_Masters.LoginPage_UnitTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:JBWindows_Masters.LoginPage_UnitTest@681aad3b]" started-at="2025-09-04T17:36:58 IST" name="setUp" finished-at="2025-09-04T17:37:14 IST" duration-ms="16515" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:JBWindows_Masters.LoginPage_UnitTest@4da855dd]" started-at="2025-09-04T18:30:49 IST" name="setUp" finished-at="2025-09-04T18:31:05 IST" duration-ms="16393" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:JBWindows_Masters.LoginPage_UnitTest@681aad3b]" started-at="2025-09-04T17:38:11 IST" name="tearDown" finished-at="2025-09-04T17:38:11 IST" duration-ms="168" status="PASS">
+        <test-method is-config="true" signature="initDriver()[pri:0, instance:JBWindows_Masters.LoginPage_UnitTest@4da855dd]" started-at="2025-09-04T18:31:05 IST" name="initDriver" finished-at="2025-09-04T18:31:05 IST" duration-ms="20" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initDriver -->
+        <test-method signature="Verify_Successful_Login()[pri:0, instance:JBWindows_Masters.LoginPage_UnitTest@4da855dd]" started-at="2025-09-04T18:31:05 IST" name="Verify_Successful_Login" finished-at="2025-09-04T18:31:35 IST" duration-ms="29493" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Verify_Successful_Login -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:JBWindows_Masters.LoginPage_UnitTest@4da855dd]" started-at="2025-09-04T18:31:35 IST" name="tearDown" finished-at="2025-09-04T18:31:36 IST" duration-ms="752" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- JBWindows_Masters.LoginPage_UnitTest -->
-      <class name="JBWindows_Masters.ProductCategoriesPage_UnitTest">
-        <test-method is-config="true" signature="fnBeforeClass()[pri:0, instance:JBWindows_Masters.ProductCategoriesPage_UnitTest@5ebd56e9]" started-at="2025-09-04T17:37:14 IST" name="fnBeforeClass" finished-at="2025-09-04T17:37:14 IST" duration-ms="15" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- fnBeforeClass -->
-        <test-method is-config="true" signature="fbBeforeMethod()[pri:0, instance:JBWindows_Masters.ProductCategoriesPage_UnitTest@5ebd56e9]" started-at="2025-09-04T17:37:14 IST" name="fbBeforeMethod" finished-at="2025-09-04T17:37:43 IST" duration-ms="29159" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- fbBeforeMethod -->
-        <test-method signature="fnVerifyDelete_Product_CategoryFeature_for_withoutInternet_Validation()[pri:0, instance:JBWindows_Masters.ProductCategoriesPage_UnitTest@5ebd56e9]" started-at="2025-09-04T17:37:43 IST" name="fnVerifyDelete_Product_CategoryFeature_for_withoutInternet_Validation" finished-at="2025-09-04T17:37:48 IST" duration-ms="4325" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- fnVerifyDelete_Product_CategoryFeature_for_withoutInternet_Validation -->
-        <test-method is-config="true" signature="fnAfterMethod()[pri:0, instance:JBWindows_Masters.ProductCategoriesPage_UnitTest@5ebd56e9]" started-at="2025-09-04T17:37:48 IST" name="fnAfterMethod" finished-at="2025-09-04T17:38:11 IST" duration-ms="23295" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- fnAfterMethod -->
-      </class> <!-- JBWindows_Masters.ProductCategoriesPage_UnitTest -->
-    </test> <!-- Functional_Testing -->
-  </suite> <!-- Windows_Retail_Masters -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
 </testng-results>

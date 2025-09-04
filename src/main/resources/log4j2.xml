@@ -24,13 +24,5 @@
 			<AppenderRef ref="Console" />
 			<AppenderRef ref="FileLogger" />
         </Root>
-        <Root level="pass">
-			<AppenderRef ref="Console" />
-			<AppenderRef ref="FileLogger" />
-        </Root>
-		<Root level="fail">
-		<AppenderRef ref="Console" />
-		<AppenderRef ref="FileLogger" />
-		</Root>
     </Loggers>
 </Configuration>

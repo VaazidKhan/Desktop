@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Windows_Retail_Transactions_Dependent_Cases" parallel="false">
+  	<listeners>
+    <listener class-name="Listeners.Listener"/>
+</listeners>
+  <test  name="Functional_Testing" preserve-order="true">
+    <classes>
+      <class name="JBWindows_Transactions.Trans_Invoice_Unit_Test">
+      <methods>
+      <exclude name="validate_Sales_Invoice_Creation_Hold"/>
+      </methods>
+      </class> -->
+      <class name="JBWindows_Transactions.PurchaseInvoicePage_UnitTest">
+      <methods>
+      <exclude name="validate_Purchase_Invoice_Creation_Hold_Reference_Invoice_Test"/>
+      <exclude name="validate_Purchase_Invoice_Creation_RefernceInvoice_Cash_Test"/>
+      <exclude name="validate_Purchase_Invoice_Creation_Only_Purchase_Item_From_Dashboard_Full_Due_Test"/>
+      <exclude name="validate_Purchase_Creation_Partial_Due__Card_Product_Card_Test"/>
+      <exclude name="validate_Purchase_Invoice_Creation_Past_Date_Paytm_Payment_Test"/>
+      <exclude name="validate_Purchase_Invoice_Creation_Wallet_Payment_Mobikwik_Test"/>
+      <exclude name="validate_Purchase_Invoice_Creation_Wallet_Freecharge_Test"/>
+      <exclude name="validate_Purchase_Invoice_Creation_Wallet_Airtel_Money_Test"/>
+      <exclude name="validate_Purchase_invoice_Creation_Wallet_Ola_Money_Test"/>
+      <exclude name="validate_Purchase_Invoice_Own_Gift_vochure_Test"/>
+      <exclude name="validate_Purchase_Invoice_Creation_Third_Party_Vochure_Test"/>
+      <exclude name="validate_Purchase_Invoice_Creation_Bank_Transfer_Test"/>
+      <exclude name="validate_Purchase_Invoice_Creation_Payment_Cheque_Test"/>
+      <exclude name="validate_Purchase_Invoice_Creation_Payment_Advance_Paid_Test"/>
+      <exclude name="validate_Purchase_Invoive_Creation_Payment_DebitNotes_Test"/>
+      <exclude name="validate_Purchase_Invoice_Creation_Multiple_Payments_Test"/>
+      <exclude name="validate_Purchase_Invoice_Creation_Invoice_Date_Future_Date"/>
+      <exclude name="validate_Purchase_Modification_By_Increasing_Quantity_Test"/>
+      <exclude name="validate_Purchase_Modification_Decreasing_Quantity_Test"/>
+      <exclude name="valoidate_Purchase_Invoice_Modification_Adding_Product_Test"/>
+      <exclude name="validate_Purchase_Invoice_Modification_By_Removing_Product_Test"/>
+      <exclude name="validate_Purchase_Invoice_Modification_For_Fully_Paid_Invoice_Test"/>
+      <exclude name="validate_Purchase_Modification_Partial_Payment_Test"/>
+      <exclude name="validate_Purchase_Invoice_Deletion_Fully_Paid_Test"/>
+      <exclude name="validate_Purchase_Invoice_Deletion_Fully_Due_Test"/>
+      <exclude name="validate_Purchase_Invoice_Deletion_Without_Internet_Test"/>
+      <exclude name="validate_Purchase_Invoice_Deletion_For_Partial_Payment_Test"/>
+       </methods>
+      </class>
+    </classes>
+  </test> 
+</suite> 

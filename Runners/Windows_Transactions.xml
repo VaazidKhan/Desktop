@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Windows_Retail_Transactions" parallel="false">
+     <listeners>
+        <listener class-name="Listeners.Listener"></listener>
+    </listeners> 
+   <test  name="Functional_Testing" preserve-order="true">
+    <classes>
+    <class name="JBWindows_Transactions.StandardEstimationCreation_Test"> 
+	   <methods>
+	     <exclude name="validate_EStimationCreation_WithoutCustomer" />
+	     <exclude name="validate_Estimation_Creation_Without_Customer_For_Order_Conversion_Test" />
+	     <exclude name="validate_Estimation_Creation_Without_Custoner_For_Invoice_Conversion_Test" />
+	     <exclude name="validate_EstimationCreation_With_RunTimeCustomer_B2B_Test" />
+	     <exclude name="validate_EstimationCreation_With_RunTimeCustomer_B2C_Test" />
+	     <exclude name="validate_EstimationCreation_With_ExistingCustomer_B2B_Test" />
+	     <exclude name="validate_EstimationCreatin_With_ExistingCustomer_B2C_Test" />
+	     <exclude name="validate_Estimation_Creation_With_Runtime_B2C_For_Invoice_Test" /> 
+	     <exclude name="validate_Estimation_Creation_With_Runtime_B2B_For_Invoice_Test" />
+	     <exclude name="validate_Etimation_Creation_With_Existing_B2C_For_Invoice_Test" />
+	     <exclude name="validate_Estimation_Creation_With_Existing_B2B_For_Invoice_Test" />
+	     <exclude name="validate_Estimation_Creation_With_RunTime_B2C_For_Order_Test" />
+	     <exclude name="validate_Estimation_Creation_With_Runtime_B2B_For_Order_Test" />
+	     <exclude name="validate_Estimation_Creation_With_Existing_B2C_For_Order_Test" />
+	     <exclude name="validate_Estimation_Creation_With_Existing_B2B_For_Order_Test" />
+	     <exclude name="validate_Estimation_Modification_IncreasingQuantity_Test" />
+	     <exclude name="validate_Estimation_Modification_DecreasingQuantity_Test" />
+	     <exclude name="validate_Estimation_Modification_AddingProduct_Test" />
+	     <exclude name="validate_Modification_ByClicking_On_DeleteButton_Test" />
+	     <exclude name="validate_Estimation_Creation_HomeDelivery_Test" />
+	     <exclude name="validate_Estimation_conversion_Order_WithoutCustomer_Test" />
+	     <exclude name="validate_Estimation_Conversion_Order_RunTime_B2C_Test" />
+	     <exclude name="validate_Estimation_Conversion_Order_Runtime_B2B_Test" />
+	     <exclude name="validate_Estimation_Conversion_Order_Existing_B2C_Cust_Test" />
+	     <exclude name="validate_Estimation_Conversion_Order_Existing_B2B_Test" />
+	     <exclude name="validate_Estimation_Conversion_Order_HomeDelievery_Test" />
+	     <exclude name="validate_Estimation_Conversion_Invoice_Without_Customer_Test" />
+	     <exclude name="validate_Estimation_Conversion_Invoice_Running_B2C_Cust_Test" /> 
+	     <exclude name="validate_Estimation_Conversion_Invoice_Running_B2B_Cust_Test" /> 
+	     <exclude name="validate_Estimation_Conversion_Invoice_Existing_B2C_Test" /> 
+	     <exclude name="validate_Estimation_Conversion_Invoice_Existing_B2B_Test" /> 
+	     <exclude name="validate_Estimation_Modification_EstimationHistory_IncreasingQuantity_Test" /> 
+	     <exclude name="validate_Estimation_Modification_EstimationHistory_DecreasingQuantity_Test" /> 
+	     <exclude name="validate_Estimation_Modification_EstimationHistory_AddProduct_Test" /> 
+	     <exclude name="validate_Estimation_Modification_EstimationHistory_ByRemovingProduct_Test" /> 
+	     <exclude name="validate_Estimation_Modification_EstimationHistory_HomeDelivery" /> 
+	     <exclude name="validate_Estimation_Modification_For_Converted_Order_Test" /> 
+	     <exclude name="validate_SalesEstimation_Modification_ConvertedTo_SalesInvoice" /> 
+	     <exclude name="validate_Sales_Estimation_Deletion_Without_Customer_Test" /> 
+	     <exclude name="validate_Sales_Estimation_Deletion_B2C_Customer_Test" /> 
+	     <exclude name="validate_Sales_Estimation_Deletion_B2B_Customer_Test" />
+	     <exclude name="validate_Sales_Estimation_Deletion_Home_Delivery_Cust_Test" />
+	     <exclude name="validate_Sales_Estimation_Deletion_For_Converted_Sales_Order_Test" />
+	     <exclude name="validate_Sales_Estimation_Deletion_For_Converted_Sales_Invoice_Test" />
+	   </methods> 
+		</class> 
+    <class name="JBWindows_Transactions.Trans_Order_Unit_Test">
+        <methods> 
+          <exclude name="validate_Sales_Order_Creation_Without_Customer" />
+	      <exclude name="validate_Sales_Order_Creation_Without_Cust_For_Sales_Invoice_Test" />
+	      <exclude name="validate_Sales_Order_Creation_Existing_B2C_Cust_Test" />
+	      <exclude name="validate_Sales_Order_Creation_For_Invoice_Existing_B2C_Test" />
+	      <exclude name="validate_Sales_Order_Creation_Existing_B2B_Cust_Test" /> 
+	      <exclude name="validate_Sales_Order_Creation_For_Invoice_Existing_B2B_Cust_Test" />
+  	      <exclude name="validate_Sales_Order_Creation_running_B2C_Cust_Test" />
+	      <exclude name="validate_Sales_Order_Creation_For_Invoice_Running_B2C_Test"/>
+          <exclude name="validate_Sales_Order_Creation_running_B2B_Cust_Test"/>
+          <exclude name="validate_Sales_Order_Creation_For_Invoice_Running_B2B_Cust_Test"/>
+          <exclude name="validate_Sales_Order_HomeDelivery_From_Dashboard"/>
+          <exclude name="validate_Sales_Order_HomeDelivery_From_Dashboard_for_Without_Internet"/> 
+	      <exclude name="validate_Sales_Order_Creation_FutureDate" />
+	      <exclude name="validate_Sales_Order_Creation_PastDate" />
+	      <exclude name="validate_Sales_Order_Modification_Increasing_Quantity" />
+	      <exclude name="validate_Sales_Order_Modification_Decreasing_Quantity" />
+	      <exclude name="validate_Sales_Order_Modification_Adding_Product_Recall_Window" />
+	      <exclude name="validate_Sales_Order_Modification_Deleting_Product_Recall_Window" />
+	      <exclude name="validate_Sales_Order_Modification_Increasing_Product_Order_History" />
+	      <exclude name="validate_Sales_Order_Modification_Decreasing_Quantity_Order_History" />
+	      <exclude name="validate_Sales_Order_Modification_Adding_Product_Order_History" />
+          <exclude name="validate_Sales_Order_Modification_Deleting_Product_Order_History" />
+	      <exclude name="validate_Sales_Order_To_Sales_Invoice_Existing_B2B_Cust_Conversion_Test" />
+	      <exclude name="validate_Sales_Order_Convererd_To_Sales_Invoice_Modification_Test" />
+	      <exclude name="validate_Sales_Order_Conversion_Sales_invoice_Existing_B2C_From_OrderHistory_Page" />
+          <exclude name="validate_Sales_Order_Conversion_Sales_Invoice_Running_B2B_Cust" />
+	      <exclude name="validate_Sales_Order_Conversion_Sales_Invoice_Running_B2C_Cust" />
+	      <exclude name="validate_Sales_Order_Conversion_Sales_Invoice_Without_Cust" />
+	      <exclude name="sales_Order_Deletion_HomeDelivery_From_OrderHistory_Page_WithoutInternet" />
+	      <exclude name="validate_SalesOrder_Deletion_B2C_Cust_Test" />
+	      <exclude name="validate_SalesOrder_Deletion_B2B_Cust_Test" />
+	      <exclude name="validate_SalesOrder_Deletion_Without_Cust_Test" /> 
+	      <exclude name="validate_Sales_Order_Deletion_HomeDelivery_Test"/>
+	      <exclude name="validate_SalesOrder_Deletion_Converted_From_Estimation_Test"/>
+	      <exclude name="validate_Sales_Order_Deletion_Converted_To_Invoice_Test"/>
+	   </methods>	
+      </class> 
+     <class name="JBWindows_Transactions.Trans_Invoice_Unit_Test">
+         <methods>
+	        <exclude name="validate_Sales_Invoice_Modification_Hold_Increasing_Quantity_Test" />
+	        <exclude name="validate_Sales_Invoice_Modification_Hold_Decresing_Quantity_Test" />
+	        <exclude name="validate_Sales_Invoice_Modification_Adding_Product_Hold_Test" />
+	        <exclude name="validate_Sales_Invoice_Hold_Removing_Product_Test" />
+	        <exclude name="validate_Sales_Invoice_Creation_Hold_Payment" />
+	        <exclude name="validate_Sales_Invoice_Existing_B2B_Cust_Payment_Cash" />
+	        <exclude name="validate_Sales_Invoice_Existing_B2C_Cust_Card_Payment_Test" />
+	        <exclude name="validate_Sales_Invoice_Creation_Running_B2C_ProductCode_Wallet_Paytm_Test" />
+	        <exclude name="validate_Sales_Invoice_Running_B2B_Wallet_Payment_Mobikwik_Test" />
+	        <exclude name="validate_Sales_Invoice_Creation_Payment_Wallet_Freecharge" />
+	        <exclude name="validate_Sales_Invoice_Creation_Payment_Wallet_AirtelMoney_Test" />
+	        <exclude name="validate_Sales_Invoice_Creation_Payment_Wallet_OlaMoney_Test" />
+	        <exclude name="validate_Sales_Invoice_Creation_Payment_Wallet_BHIM_Test" />
+	        <exclude name="validate_Sales_Invoice_Creation_Payment_Wallet_GooglePay_Test" />
+	        <exclude name="validate_Sales_Invoice_Creation_Without_Cust_With_Zero_Payment" />
+	        <exclude name="validate_Sales_Invoice_Creation_Payment_Bank_Account" />
+	        <exclude name="validate_Sales_Invoice_Creation_Own_Gift_Vochure_Test" />
+	        <exclude name="validate_Sales_Invoice_Creation_ThirdParty_Vochure_Payment_Test" />
+	        <exclude name="validate_Sales_Invoice_Creation_Payment_Credit_Note" />
+	        <exclude name="validate_Sales_Invoice_Creation_Payment_RedeemAmount" />
+	        <exclude name="validate_Sales_Invoice_Creation_Payment_Cheque_Test" />
+	        <exclude name="validate_Sales_Invoice_Creation_Payment_AdvanceReceivedCollection_Test" />
+	        <exclude name="validate_Sales_Invoice_Creation_Payment_Multiple_Modes" />
+	        <exclude name="validate_Sales_Invoice_Creation_With_Partial_Payment_Test" />
+	        <exclude name="validate_Sales_Invoice_Modification_Partial_Due_From_Recall_Window" />
+	        <exclude name="validate_Sales_Invoice_Modification_Partial_Due_From_History_Test" />
+	        <exclude name="validate_Sales_Invoice_Creation_With_Full_Due_Test" />
+	        <exclude name="validate_Sales_Invoice_Modification_Due_From_Recall_Window" />
+	        <exclude name="validate_Sales_Invoice_Modification_Due_From_History_Test" />
+	        <exclude name="validate_Sales_Invoice_Modification_Increasing_Quantity_Recall_Window_Test" />
+	        <exclude name="validate_Sales_Invoice_Modification_Decreasing_Quantity_From_Recall_Window_Test" />
+	        <exclude name="validate_Sales_Invoice_Modification_By_Adding_Product_From_Recall_Window_Test" />
+	        <exclude name="validate_Sales_Invoice_Modification_Removing_Product_Test" />
+	        <exclude name="validate_Sales_Invoice_Modification_Increasing_Quantity_Invoice_History" />
+	        <exclude name="validate_Sales_Invoice_Decresing_Qunatity_From_Invoice_History" />
+	        <exclude name="validate_Sales_Invoice_Modification_From_History_Adding_Product_Test" />
+	        <exclude name="validate_Sales_Invoice_Modification_From_History_Deleting_Product_Test" />
+	        <exclude name="validate_Sales_Invoice_Modification_HomeDelivery_Recall_Window" />
+	        <exclude name="validate_Sales_Invoice_Modification_HomeDelivery_Invoice_History_Page_Test" />
+	        <exclude name="validate_Sales_Invoice_Deletion_Fully_Paid_From_Invoice_History_Test" />
+	        <exclude name="validate_Sales_Invoice_Deletion_B2C_Order_Converted_To_Invoice_Test" />
+	        <exclude name="validated_Sales_Invoice_Deletion_Without_Customer_Test" />
+	        <exclude name="validate_Sales_Invoice_Deletion_Fully_Due_Test" />
+	        <exclude name="validate_Sales_Invoice_Deletion_HomeDelivery_Test" />
+	        <exclude name="validate_Sales_Invoice_Deletion_Estimation_Converted_To_Invoice_Test" /> 
+	        <exclude name="validate_Sales_Invoice_Deletion_Partial_Payment_Test" /> 
+	        <exclude name="validate_Sales_Invoice_Deletion_Without_Internet_Test" /> 
+	    </methods>
+      </class> 
+      <class name="JBWindows_Transactions.Trans_Return_Unit_Test">
+		  <methods>
+			<exclude name="validate_Return_Invoice_Creation_with_ReturnAllowedProduct_Test" />
+			<exclude name="validate_Return_Invoice_Creation_Both_Return_NonReturn_Test" />
+			<exclude name="valoidate_Return_Creation_HomeDelievery_Test" />
+			<exclude name="validate_Return_Creation_Non_Return_Product" />
+			<exclude name="validate_Partial_Return_Vochure_Creation_Test" />
+			<exclude name="validate_Exchange_Invoice_Creation_Test" />
+			<exclude name="validate_Exchange_Invoice_Creation_Amount_Greater_Test" />
+			<exclude name="validate_Return_Deletion_Fully_Return_Test" />
+			<exclude name="validate_Return_Deletion_Home_Delievery_Test" />
+			<exclude name="validate_Return_Exchange_Invoice_Deletion_Test" />
+			<exclude name="validate_Exchange_Invoice_Home_Delievery_Deletion_Test" />
+	     </methods>
+	 </class> 
+	 
+	<class name="JBWindows_Transactions.PurchaseInvoicePage_UnitTest">
+	     <methods>
+	       <exclude name="validate_Purchase_Invoice_Creation_Hold_Without_Reference_Invoice_Test"/>
+	       <exclude name="validate_Purchase_Invoice_Creation_With_RefernceInvoice_Cash_Test"/>
+	       <exclude name="validate_Purchase_Invoice_Creation_Only_Purchase_Item_From_Dashboard_Full_Due_Test"/>
+	       <exclude name="validate_Purchase_Creation_Partial_Due_Card_Product_Card_Test"/>
+	       <exclude name="validate_Purchase_Invoice_Creation_Past_Date_Paytm_Payment_Test"/>
+	       <exclude name="validate_Purchase_Invoice_Creation_Wallet_Payment_Mobikwik_Test"/>
+	       <exclude name="validate_Purchase_Invoice_Creation_Wallet_Freecharge_Test"/>
+	       <exclude name="validate_Purchase_Invoice_Creation_Wallet_Airtel_Money_Test"/>
+	       <exclude name="validate_Purchase_invoice_Creation_Wallet_Ola_Money_Test"/>
+	       <exclude name="validate_Purchase_Invoice_Own_Gift_vochure_Test"/>
+	       <exclude name="validate_Purchase_Invoice_Creation_Third_Party_Vochure_Test"/>
+	       <exclude name="validate_Purchase_Invoice_Creation_Bank_Transfer_Test"/>
+	       <exclude name="validate_Purchase_Invoice_Creation_Payment_Cheque_Test"/>
+	       <exclude name="validate_Purchase_Invoice_Creation_Payment_Advance_Paid_Test"/>
+	       <exclude name="validate_Purchase_Invoive_Creation_Payment_DebitNotes_Test"/>
+	       <exclude name="validate_Purchase_Invoice_Creation_Multiple_Payments_Test"/>
+	       <exclude name="validate_Purchase_Invoice_Creation_Invoice_Date_Future_Date"/>
+	       <exclude name="validate_Purchase_Invoice_Creation_Fully_Due_For_Deletion_Test"/>
+	       <exclude name="validate_Purchase_Modification_By_Increasing_Quantity_Test"/>
+	       <exclude name="validate_Purchase_Modification_Decreasing_Quantity_Test"/>
+	       <exclude name="valoidate_Purchase_Invoice_Modification_Adding_Product_Test"/>
+	       <exclude name="validate_Purchase_Invoice_Modification_By_Removing_Product_Test"/>
+	       <exclude name="validate_Purchase_Invoice_Modification_For_Fully_Paid_Invoice_Test"/>
+	       <exclude name="validate_Purchase_Modification_Partial_Payment_Test"/>
+	       <exclude name="validate_Purchase_Invoice_Deletion_Fully_Paid_Test"/>
+	       <exclude name="validate_Purchase_Invoice_Deletion_Fully_Due_Test"/>
+	       <exclude name="validate_Purchase_Invoice_Deletion_Without_Internet_Test"/>
+	       <exclude name="validate_Purchase_Invoice_Deletion_For_Partial_Payment_Test"/>
+	  </methods>
+	</class> 
+	 <class name="JBWindows_Transactions.ExpensesPage_UnitTest">
+	      <methods>
+	        <exclude name="validate_Expense_Creation_With_Expense_Category_Test"/>
+	        <exclude name="validate_Expense_Creation_With_Expense_Date_Greater_Than_Expense_Vochure_Date_Test"/>
+	        <exclude name="validate_Expense_Vochure_Creation_With_Future_Vochure_Date_Test"/>
+	        <exclude name="validate_Expense_Date_Greater_Than_Future_Date_Test"/>
+	        <exclude name="validate_Expense_Category_Creation_Without_Expense_Category_For_Modification_Test"/>
+	        <exclude name="validate_Expense_Vochure_Modification_By_Selecting_Sub_Category_Test"/>
+	        <exclude name="validate_Expense_Vochure_Creation_With_Payment_Full_Due_Test"/>
+	        <exclude name="validate_Expense_Vochure_Modification_By_Selecting_Document_Taxes_ExpenseAnd_Sub_Category_Test"/>
+	        <exclude name="validate_Expense_Vochure_Modification_By_Modifying_Existing_Document_Test"/>
+	        <exclude name="validate_Expense_Vochure_Modification_Expense_Date_Greater_Than_Expense_Vochure_Date_Test"/>
+	        <exclude name="validate_Expense_Vochure_Modification_Expense_Date_As_Future_Date_Test"/>
+	        <exclude name="validate_Expense_Vochure_Modification_Fully_Paid_Test"/>
+	        <exclude name="validate_Expense_Vochure_Deletion_Fully_Paid_Test"/>
+	        <exclude name="validate_Expense_Vochure_Deletion_Fully_Due_Test"/>
+	        <exclude name="validate_Expense_Vochure_Deletion_Without_Internet_Test"/>
+	        <exclude name="validate_Expense_Vochure_Deletion_Partial_Due_Test"/>
+	     </methods>
+	</class> 
+	<class name="JBWindows_Transactions.Trans_Requisition_Order_Test">
+	     <methods>
+	        <exclude name="validate_Requisition_Order_Creation_Test"/>
+	        <exclude name="validate_Requisition_Order_Creation_With_Inactive_Product_Test"/>
+	        <exclude name="validate_Requisition_Order_Creation_Without_Mapping_Product_To_Request_Branch_Test"/>
+	        <exclude name="validate_Requisition_Order_Deletion_Current_Device_Test"/>
+	        <exclude name="validate_Requisition_Order_Deletion_BackOffice_Test"/>
+	        <exclude name="validate_Requisition_Order_Creation_Quantity_Greater_Test"/>
+         </methods>
+	</class>
+	<class name="JBWindows_Transactions.Stock_Transfer_Out_Test">
+	     <methods>
+	        <exclude name="validate_StockTransfer_Out_Creation"/>
+	        <exclude name="validate_StockTransfer_Out_Creation_by_SendingLessThan_RequestedQuantity"/>
+	        <exclude name="validate_StockTransfer_Out_Creation_by_SendingGreaterThan_RequestedQuantity"/>
+	        <exclude name="validate_Partial_StockTransfer_Out_Creation"/>
+	        <exclude name="validate_StockTransfer_Out_Deletion_Current_Device"/>
+	        <exclude name="validate_Partial_StockTransfer_Out_Deletion"/>
+	     </methods>
+	</class>
+	<class name="JBWindows_Transactions.Goods_Received_Test">
+	     <methods>
+	         <exclude name="validate_GoodsReceivedNote_Creation"/>
+	         <exclude name="validate_GoodsReceivedNote_Creation_by_ReceivingLessThan_TransferedQuantity"/>
+	         <exclude name="validate_GoodsReceivedNote_Creation_In_Breakups"/>
+	         <exclude name="validate_GoodsReceivedNote_Creation_by_ReceivingGreatherQNTY_Than_TransferedQuantity"/>
+	         <exclude name="validate_GoodsReceivedNote_Deletion_Current_Device"/>
+	         <exclude name="validate_Partial_GoodsReceivedNote_Deletion"/>
+	         <exclude name="GoodsReceivedNote_Deletion_which_has_been_created_with_Receiving_Greater_Qnty_than_TransferredQnty"/>
+	     </methods>
+	</class>
+	<class name="JBWindows_Transactions.Production_UnitTest">
+	      <methods>
+	        <exclude name="fnProduction_Creation_with_Laborcost"/>
+	        <exclude name="fnProduction_Creation_with_LoadingCost"/>
+	        <exclude name="fnProduction_Creation_with_OverheadCost"/>
+	        <exclude name="fnProduction_Creation_with_WastageCost"/>
+	        <exclude name="fnProduction_Creation_with_Labor_Loading_Overhead_Wastage_costs"/>
+	        <exclude name="fnProduction_Creation_with_BOM"/>
+	        <exclude name="fnTry_to_create_production_without_adding_Rawproducts"/>
+	        <exclude name="fnTry_to_create_production_with_the_raw_material_having_no_stock_and_not_allowed_to_negative_stock"/>
+	        <exclude name="fnProduction_of_BOMCreation_with_Laborcost"/>
+	        <exclude name="fnProduction_of_BOMCreation_with_LoadingCost"/>
+	        <exclude name="fnProduction_of_BOMCreation_with_OverheadCost"/>
+	        <exclude name="fnProduction_of_BOMCreation_with_WastageCost"/>
+	        <exclude name="fnProduction_of_BOMCreation_with_Labor_Loading_Overhead_Wastage_costs"/>
+	        <exclude name="fnproduction_of_BOMCreation_with_the_raw_material_having_no_stock_and_not_allowed_to_negative_stock"/>
+	        <exclude name="fnproduction_of_BOMCreation_without_adding_Rawproducts"/>
+	      </methods>
+	</class>
+	<class name="JBWindows_Transactions.Trans_MultiDiscount_SalesInvoice_Test">
+	        <methods>
+	          <exclude name="fnVerify_After_Applying_only_default_discount"/>
+	          <exclude name="fnVerify_After_Applying_only_Pricecatalog_discount"/>
+	          <exclude name="fnVerify_After_Applying_only_Brand_discount"/>
+	          <exclude name="fnVerify_After_Applying_only_Category_discount"/>
+	          <exclude name="fnVerify_After_Applying_only_Department_discount"/>
+	          <exclude name="fnVerify_After_Applying_only_Customer_discount"/>
+	          <exclude name="fnVerify_After_Applying_Customer_discount_and_DefaultDisc_PriceListDisc_BrandDisc_CategoryDisc_DeptDisc"/>
+	          <exclude name="fnVerify_After_Applying_DefaultDisc_BrandDisc_CategoryDisc_DeptDisc"/>
+	          <exclude name="fnVerify_After_Applying_CustomerDisc_CustomerSchemeDisc_DeptDisc_CategoryDisc"/>
+	          <exclude name="fnVerify_After_Applying_CustomerDisc_CustomerSchemeDisc_PaymentTermDisc"/>
+	       </methods>
+	</class>
+	<class name="JBWindows_Transactions.Inventory_AdjustmentTest">
+	     <methods>
+	       <exclude name="fnInventoryAdjustment_with_InitialStock"/>
+	       <exclude name="fnInventoryAdjustment_with_Breakage"/>
+	       <exclude name="fnInventoryAdjustment_with_Others_Stock_In"/>
+	       <exclude name="fnInventoryAdjustment_with_Incorrect_receiving"/>
+	       <exclude name="fnInventoryAdjustment_with_Over_Shipments"/>
+	       <exclude name="fnInventoryAdjustment_with_Loss"/>
+	       <exclude name="fnInventoryAdjustment_with_Others_Stock_Out"/>
+	       <exclude name="fnInventoryAdjustment_with_Physical_Count_IN"/>
+	       <exclude name="fnInventoryAdjustment_with_Physical_Count_OUT"/>
+	       <exclude name="fnInventoryAdjustment_with_Spoilt"/>
+	       <exclude name="fnInventoryAdjustment_with_Theft"/>
+	       <exclude name="fnInventoryAdjustment_with_Wastage"/>
+	      </methods>
+	</class>
+	<class name="JBWindows_Transactions.BatchNo_Generation_With_SalesInvoice">
+	      <methods>
+	         <exclude name="Validate_SalesInvoice_Creation_While_Selecting_BatchNo_Without_Customer"/>
+	         <exclude name="Validate_SalesInvoice_Creation_With_a_Product_Managed_by_Batch_Number_and_While_Selecting_BatchNo_With_Customer"/>
+	         <exclude name="Validate_SalesInvoice_Creation_with_a_combination_of_Managed_by_Batch_No_and_not_Managed_by_Batch_No_products"/>
+	         <exclude name="Validate_SalesInvoice_Creation_While_Selecting_BatchNo_Without_Customer_for_Return_Exchange_Equal_to_Exchange_Amount"/>
+	         <exclude name="Validate_SalesInvoice_Creation_While_Selecting_BatchNo_Without_Customer_for_Return_Exchange_Greater_than_Exchange_Amount"/>
+	      </methods>
+	</class>
+	<class name="JBWindows_Transactions.Return_BatchNumber">
+	     <methods>
+	       <exclude name="Select_BatchNo_with_EqualQuantity_while_creating_Return_Refund_Invoice_with_the_product_Managed_by_BatchNo"/>
+	       <exclude name="Select_BatchNo_with_LessQuantity_while_creating_Return_Refund_Invoice_with_the_product_Managed_by_BatchNo"/>
+	       <exclude name="Select_BatchNo_while_creating_Return_Exchange_Invoice_with_the_product_Managed_by_BatchNo_and_Less_than_Exchange_Amount"/>
+	       <exclude name="Select_BatchNo_while_creating_Return_Exchange_Invoice_with_the_product_Managed_by_BatchNo_and_Equal_to_Exchange_Amount"/>
+	       <exclude name="Select_BatchNo_while_creating_Return_Exchange_Invoice_with_the_product_Managed_by_BatchNo_and_Greater_than_Exchange_Amount"/>
+	       <exclude name="Select_BatchNo_while_creating_Return_Exchange_Invoice_partially"/>
+	      </methods>
+	</class>
+	<class name="JBWindows_Transactions.BatchNo_Generation_With_PurchaseInvoice">
+	      <methods>
+	         <exclude name="Validate_Purchaseinvoice_creation_with_a_Product_Managed_by_Batch_Number"/>
+	         <exclude name="Validate_Purchaseinvoice_creation_with_a_Product_Not_Managed_by_Batch_Number"/>
+	         <exclude name="Validate_Purchaseinvoice_creation_with_a_combination_of_Managed_by_Batch_No_and_not_Managed_by_Batch_No_products"/>
+	         <exclude name="Validate_BatchNo_with_Entering_Existing_PurchaseInvoice_record_for_the_same_product"/>
+	         <exclude name="Validate_BatchNo_with_Entering_Existing_PurchaseInvoice_record_for_the_Different_product"/>
+	         <exclude name="Generate_BatchNo_while_Modifying_Purchase_invoice_with_a_product_managed_by_BatchNo"/>
+	         <exclude name="Generate_BatchNo_while_modifying_Purchase_invoice_with_a_product_not_managed_by_BatchNo"/>
+	         <exclude name="Generate_BatchNo_while_modifying_Purchase_invoice_with_a_combination_of_managed_by_BatchNo_and_not_managed_by_BatchNo_products"/>
+	         <exclude name="Generate_BatchNo_while_modifying_Purchase_invoice_with_entering_existing_record_for_the_same_product"/>
+	         <exclude name="Try_to_generate_BatchNo_while_modifying_Purchase_invoice_with_entering_existing_record_for_the_different_product"/>
+	     </methods>
+	</class>
+	    <class name="JBWindows_Transactions.BatchNo_Generation_With_Order">
+	           <methods>
+	             <exclude name="Validate_Order_Creation_with_a_product_Managed_by_Batch_Number_and_While_Selecting_BatchNo_With_Customer"/>
+	             <exclude name="Select_BatchNo_while_converting_Order_to_Invoice_with_a_product_Managed_by_Batch_Number_and_WithSelecting_Customer"/>
+	             <exclude name="Validate_Order_Creation_with_a_combination_of_Managed_by_BatchNo_and_Not_Managed_by_BatchNo_products"/>
+	             <exclude name="Select_BatchNo_while_converting_Order_to_Invoice_with_a_combination_of_Managed_by_BatchNo_and_Not_Managed_by_BatchNo_products"/>
+	           </methods>
+	</class>
+	   <class name="JBWindows_Transactions.BatchNo_Generation_With_Estimation">
+	         <methods>
+	           <exclude name="validate_Estimation_Creation_with_a_product_Managed_by_Batch_Number"/>
+	           <exclude name="Select_BatchNo_while_converting_quotation_to_Invoice_with_a_product_managed_by_BatchNo"/>
+	         </methods>
+	</class>
+	  <class name="JBWindows_Transactions.Production_BatchNumber">
+	          <methods>
+	            <exclude name="Generate_BatchNo_for_Finishedgood_while_creating_Production"/>
+	            <exclude name="Select_BatchNo_for_Rawmaterials_while_creating_Production"/>
+	            <exclude name="Generate_BatchNo_for_Finishedgood_while_creating_with_BOM"/>
+	            <exclude name="Select_BatchNo_for_Rawmaterials_while_creating_Production_with_BOM"/>
+	         </methods>
+	</class>
+    </classes>
+  </test> 
+</suite> 

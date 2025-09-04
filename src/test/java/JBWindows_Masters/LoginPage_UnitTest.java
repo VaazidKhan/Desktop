@@ -36,7 +36,6 @@ public class LoginPage_UnitTest extends BaseTest {
                     ApplicationVariables.LoginMasterExcel, "EnvironmentDetails", "Execution", "Yes Win", "Password");
 
             refLogin.fnDoLogin(Username, Password);
-
             refDashboard.logout();
         } catch (Exception e) {
             TakeScreenshots.fn_take_Screenshot("Login_Error");
@@ -46,6 +45,7 @@ public class LoginPage_UnitTest extends BaseTest {
         	fnEndTestCase();
         }
     }
+    
     
     
  

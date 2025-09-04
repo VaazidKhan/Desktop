@@ -6,15 +6,14 @@
   </listeners>
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="JBWindows_Masters.ProductCategories_UnitTest">
+      <class name="JBWindows_Masters.LoginPage_UnitTest">
         <methods>
-          <include name="fnBeforeMethod"/>
+          <include name="Verify_Successful_Login"/>
           <include name="tearDown"/>
           <include name="setUp"/>
-          <include name="fnVerifyFieldVisibility"/>
-          <include name="fnOpenProductCategoriesPage"/>
+          <include name="initDriver"/>
         </methods>
-      </class> <!-- JBWindows_Masters.ProductCategories_UnitTest -->
+      </class> <!-- JBWindows_Masters.LoginPage_UnitTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

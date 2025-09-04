@@ -3,15 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="JBWindows_Masters.ProductCategoriesPage_UnitTest">
+      <class name="JBWindows_Masters.LoginPage_UnitTest">
         <methods>
-          <include name="fnBeforeMethod"/>
-          <include name="fnverifyParent_Product_CategoryCreation"/>
-          <include name="fnAfterMethod"/>
+          <include name="Verify_Successful_Login"/>
           <include name="tearDown"/>
           <include name="setUp"/>
+          <include name="initDriver"/>
         </methods>
-      </class> <!-- JBWindows_Masters.ProductCategoriesPage_UnitTest -->
+      </class> <!-- JBWindows_Masters.LoginPage_UnitTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
