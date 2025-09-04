@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<listeners>
+    <listener class-name="Listeners.Listener"/>
+</listeners>
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="JBWindows_Masters.ProductCategoriesPage_UnitTest">
+    	<methods>
+					<exclude name ="fnVerifyFieldVisibility" />
+					<exclude name ="fnVerifyFieldEnableOrNot" />
+					<exclude name ="fnverifyParent_Product_CategoryCreation" />
+					<exclude name ="fnverify_Product_CategoryCreation_for_withoutInternet_Validation" />
+					<exclude name ="fnverifyNewProduct_CategoryCreation" />
+					<exclude name ="fnVerifyEditProductCategoryFeature" />
+					<exclude name ="fnverifyProduct_CategoryCreation_for_MultiDiscountFeature" />
+					<exclude name ="fnVerifyDeleteParent_Product_CategoryFeature" />
+					<exclude name ="fnVerifyDeleteCategoryFeature" />
+					<exclude name ="fnVerifyDelete_Product_CategoryFeature_for_withoutInternet_Validation" />
+				</methods>
+			</class>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

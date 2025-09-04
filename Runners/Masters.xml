@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Windows_Retail_Masters" parallel="false">
+<listeners>
+        <listener class-name="Listeners.Listener"/>
+    </listeners>
+	<test name="Functional_Testing" preserve-order="true">
+		<classes>
+			
+			<class name="JBWindows_Masters.LoginPage_UnitTest">
+				<methods>
+					<exclude name="Verify_Successful_Login" />
+				</methods>
+			</class>
+			<class name="JBWindows_Masters.ProductCategoriesPage_UnitTest" >
+				<methods>
+					<exclude name ="fnVerifyFieldVisibility" />
+					<exclude name ="fnVerifyFieldEnableOrNot" />
+					<exclude name ="fnverifyParent_Product_CategoryCreation" />
+					<exclude name ="fnverify_Product_CategoryCreation_for_withoutInternet_Validation" />
+					<exclude name ="fnverifyNewProduct_CategoryCreation" />
+					<include name ="fnVerifyEditProductCategoryFeature" />
+					<exclude name ="fnverifyProduct_CategoryCreation_for_MultiDiscountFeature" />
+					<exclude name ="fnVerifyDeleteParent_Product_CategoryFeature" />
+					<exclude name ="fnVerifyDeleteCategoryFeature" />
+					<exclude name ="fnVerifyDelete_Product_CategoryFeature_for_withoutInternet_Validation" />
+				</methods>
+			</class>
+	  
+   <class name="JBWindows_Masters.BrandPage_UnitTest" >
+				<methods>
+					<exclude name ="fnVerifyFieldVisibility" />
+					<exclude name ="fnVerifyFieldEnableOrNot" />
+					<exclude name ="fnVerify_BrandCreation_for_withoutInternet" />
+					<exclude name ="fnVerifyBrandCreation_for_MultiDiscountFeature" />
+					<exclude name ="fnVerifySuccessfulBrandCreation" />
+					<exclude name ="fnVerifyEditBrandFeature" />
+					<exclude name ="fnVerifyDeleteBrandFeature"/>
+					<exclude name ="fnVerifyDelete_BrandFeature_for_WithoutInternet"/>
+				</methods>
+	   </class>
+	     <class name="JBWindows_Masters.ProductPage_Test" >
+				<methods>
+					<exclude name ="fnVerifyFieldVisibility" />
+					<exclude name ="fnVerifyFieldEnableOrNot" />
+					<exclude name ="FnVerify_Active_Product_Creation"/>
+					<exclude name ="FnVerify_InActive_Product_Creation"/>
+					<exclude name ="FnVerify_Product_Creation_for_WithoutInternet_Validation"/>
+					<exclude name ="FnVerify_New_Product_Creation"/>
+					<exclude name ="fnVerifyEditProductFeature"/>
+					<exclude name ="fnProduct_Creation_MappedBy_BatchNumber"/>
+					<exclude name ="fnProduct_Creation_MappedBy_SerialNumber"/>
+					<exclude name ="fnProduct_Creation_for_Production_as_a_FinishedGood"/>
+					<exclude name ="fnProduct_Creation_for_Production_as_a_RawProduct1"/>
+					<exclude name ="fnProduct_Creation_for_Production_as_a_RawProduct2"/>
+					<exclude name ="fnProduct_Creation_for_Production_as_a_NotAllowNegativeStock_RawProduct3"/>
+					<exclude name ="fnProduct_Creation_for_ProductionOFBatchNO_as_a_FinishedGood"/>
+					<exclude name ="fnDeleteProduct"/>
+					<exclude name ="fnDeleteActive_Product"/>
+					<exclude name ="fnDeleteInActive_Product"/>
+					<exclude name ="fnDelete_Product_for_WithoutInternet"/>
+			    </methods>
+	   </class>
+	   <class name ="JBWindows_Masters.MultiDiscProductCreationTest">
+	           <methods>
+	             <exclude name ="FnVerify_Product_Creation_with_PriceCatalogDiscount" />
+	             <exclude name ="FnVerify_Product_Creation_with_DefaultDiscount" />
+	             <exclude name ="FnVerify_Product_Creation_with_BrandDiscount"/>
+	             <exclude name ="FnVerify_Product_Creation_with_CategoryDiscount"/>
+	             <exclude name ="FnVerify_Product_Creation_with_DepartmentDiscount" />
+	             <exclude name ="FnVerify_Product_Creation_with_DefaultDisc_BrandDisc_CategoryDisc_DeptDisc" />
+	             <exclude name ="FnVerify_Product_Creation_For_B2C_CustomerDiscount" />
+	             <exclude name ="FnVerify_Product_Creation_For_B2B_CustomerDiscount"/>
+	            </methods>
+	   </class>
+	   
+	    <class name ="JBWindows_Masters.DiscountRulePage_UnitTest">
+	           <methods>
+	           <exclude name ="fnVerifyFieldVisibility" />
+	           <exclude name ="fnVerifyFieldEnableOrNot" />
+	           <exclude name ="fnActive_DiscountRuleCreation_withDiscountType_Item" />
+	           <exclude name ="fnInActive_DiscountRuleCreation_withDiscountType_Item" />
+	           <exclude name ="fnDiscountRuleCreation_withDiscountType_Item" />
+	           <exclude name ="fnDiscountRuleCreation_withDiscountType_Item_for_WithoutInternet" />
+	           <exclude name ="fnActive_DiscountRuleCreation_withDiscountType_Invoice" />
+	           <exclude name ="fnInActive_DiscountRuleCreation_withDiscountType_Invoice" />
+	           <exclude name ="fnDiscountRuleCreation_withDiscountType_Invoice" />
+	           <exclude name ="fnDiscountRuleCreation_withDiscountType_Invoice_for_WithoutInternet"/>
+	           <exclude name ="fnActive_DiscountRuleCreation_withDiscountType_Item_for_MultiDiscountFeature"/>
+	           <exclude name ="fnActive_DiscountRuleDelete_withDiscountType_Item"/>
+	           <exclude name ="fnInActive_DiscountRuleDelete_withDiscountType_Item"/>
+	           <exclude name ="fnDiscountRuleDelete_withDiscountType_Item"/>
+	           <exclude name ="fnActive_DiscountRuleDelete_withDiscountType_Invoice"/>
+	           <exclude name ="fnInActive_DiscountRuleDelete_withDiscountType_Invoice"/>
+	           <exclude name ="fnDiscountRuleDelete_withDiscountType_Invoice"/>
+	           <exclude name ="fnDiscountRuleDelete_withDiscountType_Invoice_for_withoutInternet"/>
+	           <exclude name ="fnDiscountRuleDelete_withDiscountType_Item_for_withoutInternet"/>
+	           </methods>
+	           </class>
+	     <class name ="JBWindows_Masters.TaxGroupPage_Test">
+	           <methods>
+	             <exclude name ="fnVerifyFieldVisibility_FieldEnabledorNot" />
+	             <exclude name ="fnTaxGroupCreation" />
+	             <exclude name ="fnTaxGroupEdit"/>
+	             <exclude name ="fnTaxGroupCreation_for_withoutInternet"/>
+	             <exclude name ="fnDeleteTaxGroup" />
+	             <exclude name ="fnDeleteTaxGroup_for_withoutInternet" />
+	             </methods>
+	     </class>
+	   
+	   <class name ="JBWindows_Masters.TaxRatePage_UnitTest">
+	           <methods>
+	           <exclude name ="fnVerifyFieldVisibility" />
+	           <exclude name ="fnVerifyFieldEnableOrNot" />
+	           <exclude name ="fnActive_TaxRateCreation" />
+	           <exclude name ="fnInActive_TaxRateCreation" />
+	           <exclude name ="fnTaxRateCreation"/>
+	           <exclude name ="fnTaxEdit"/>
+	           <exclude name ="fnTaxRateCreation_for_withoutInternet"/>
+	           <exclude name ="fnActive_TaxrateDelete"/>
+	           <exclude name ="fnInActive_TaxrateDelete"/>
+	           <exclude name ="fnTaxrateDelete"/>
+	           <exclude name ="fnTaxrateDelete_for_withoutInternet"/>
+	           </methods>
+	   </class>
+	   <class name ="JBWindows_Masters.UnitsPage_Test">
+	           <methods>
+	           <exclude name ="fnVerifyFieldVisibility" />
+	           <exclude name ="fnVerifyFieldEnableOrNot" />
+	           <exclude name ="fnActive_UnitsCreation" />
+	           <exclude name ="fnInActive_UnitsCreation" />
+	           <exclude name ="fnUnitsCreation"/>
+	           <exclude name ="fnUnitEdit"/>
+	           <exclude name ="fnUnitsCreation_for_withoutInternet"/>
+	           <exclude name ="fnActive_UnitsDelete"/>
+	           <exclude name ="fnInactive_UnitsDelete"/>
+	           <exclude name ="fnUnitsDelete"/>
+	           <exclude name ="fnUnitsDelete_for_withoutInternet"/>
+	           </methods>
+	   </class>
+	    <class name ="JBWindows_Masters.DepartmentPage_UnitTest">
+	           <methods>
+	             <exclude name ="fnVerifyFieldVisibility" />
+	             <exclude name ="fnVerifyFieldEnableOrNot" />
+	             <exclude name ="fnDepartmentCreation_for_MultiDiscountFeature" />
+	             <exclude name ="fnDepartmentCreation" />
+	             <exclude name ="fnDepartmentEdit" />
+	             <exclude name ="fnDepartmentCreation_for_withoutInternet"/>
+	             <exclude name ="fnDepartmentDelete"/>
+	             <exclude name ="fnDepartmentDelete_for_withoutInternet"/>
+	           </methods>
+	   </class> 
+	   <class name="JBWindows_Masters.CustomerPage_UnitTest" >
+			<methods>
+			<exclude name ="fnVerifyFieldVisibility_CustomerType_B2B" />
+			<exclude name ="fnVerifyFieldVisibilityCustomerType__B2C" />
+			<exclude name ="fnVerifyFieldEnableOrNotCustomerType_B2B" />
+			<exclude name ="fnVerifyFieldEnableOrNotCustomerType_B2C" />
+			<exclude name ="fnActive_CustomerCreation_CustomerType_B2C" />
+			<exclude name ="fnInActive_CustomerCreation_CustomerType_B2C" />
+			<exclude name ="fnCustomerCreation_CustomerType_B2C" />
+			<exclude name ="fnCustomerEdit_CustomerType_B2C" />
+			<exclude name ="fnCustomerCreation_CustomerType_B2C_For_WithoutInternet" />
+			<exclude name ="fnActive_CustomerCreation_CustomerType_B2B" />
+			<exclude name ="fnInActive_CustomerCreation_CustomerType_B2B" />
+			<exclude name ="fnCustomerCreation_CustomerType_B2B" />
+			<exclude name ="fnCustomerEdit_CustomerType_B2B" />
+			<exclude name ="fnCustomerCreation_CustomerType_B2B_For_WithoutInternet" />
+			<exclude name ="fnCustomerDelete_CustomerType_B2C"/>
+		    <exclude name ="fnActive_CustomerDelete_CustomerType_B2C"/>
+			<exclude name ="fnInActive_CustomerDelete_CustomerType_B2C"/>
+			<exclude name ="fnCustomerDelete_CustomerType_B2B"/>
+			<exclude name ="fnActive_CustomerDelete_CustomerType_B2B"/>
+			<exclude name ="fnInActive_CustomerDelete_CustomerType_B2B"/>
+			<exclude name ="fnDelete_CustomerType_B2C_for_WithoutInternet" />
+			<exclude name ="fnDelete_CustomerType_B2B_for_WithoutInternet"/>
+			<exclude name ="fnActive_CustomerCreation_CustomerType_B2C_for_CustomerDiscount"/>
+			<exclude name ="fnActive_CustomerCreation_CustomerType_B2B_for_CustomerDiscount"/>
+			<exclude name ="CustomerConsumer_DiscountType_Product_OnlyDiscountRule_Creation"/>
+			<exclude name ="CustomerConsumer_DiscountType_Product_Scheme_DiscountRule_Creation"/>
+			<exclude name ="CustomerCorporate_DiscountType_Product_OnlyDiscountRule_Creation"/>
+			<exclude name ="CustomerCorporate_DiscountType_Product_Scheme_DiscountRule_Creation"/>
+			<exclude name ="fnCustomerDiscount_Deletion_BeforeAnyTransaction"/>
+			</methods>
+	  </class>
+	    
+	   <class name ="JBWindows_Masters.SupplierPage_UnitTest">
+	           <methods>
+	              <exclude name ="fnVerifyFieldVisibility" />
+	              <exclude name ="fnVerifyFieldEnableOrNot" />
+	              <exclude name ="fnActive_SupplierCreation" />
+	              <exclude name ="fnInActive_SupplierCreation" />
+	              <exclude name ="fnSupplierCreation_for_WithoutInternet" />
+	              <exclude name ="fnSupplierCreation" />
+	              <exclude name ="VerifySupplierEdit" />
+	              <exclude name ="fnSupplierCreation_for_PurchaseInvoiceFeature_One"/>
+	              <exclude name ="fnSupplierCreation_for_PurchaseInvoiceFeature_Two"/>
+	              <exclude name ="fnDelete_Active_SupplierCreation" />
+	              <exclude name ="fnDelete_InActive_SupplierCreation" />
+	              <exclude name ="fnDelete_SupplierCreation" />
+	              <exclude name ="fnDelete_SupplierCreation_for_WithoutInternet" />
+	             </methods>
+	   </class>
+	   <class name ="JBWindows_Masters.AgentPage_UnitTest">
+	           <methods>
+	             <exclude name ="fnVerifyFieldVisibility" />
+	             <exclude name ="fnVerifyFieldEnableOrNot" />
+	             <exclude name ="fn_Active_AgentCreation"/>
+	             <exclude name ="fn_InActive_AgentCreation"/>
+	             <exclude name ="fnAgentCreation_for_WithoutInternet_Validation" />
+	             <exclude name ="fnAgentCreation" />
+	             <exclude name ="fnAgentEdit" />
+	             <exclude name ="fnDeleteAgent" />
+	             <exclude name ="fnDeleteActive_Agent"/>
+	             <exclude name ="fnDeleteInActive_Agent"/>
+	             <exclude name ="fnDelete_Agent_for_WithoutInternet" />
+	           </methods>
+	   </class>
+	   <class name ="JBWindows_Masters.BookingMasterPage_Test">
+	           <methods>
+	             <exclude name ="fnVerifyFieldVisibility_FieldEnabledorNot" />
+	             <exclude name ="fnBookingMastercreation" />
+	             <exclude name ="fnBookingMasterEdit"/>
+	             <exclude name ="fnBookingMastercreation_for_withoutInternet"/>
+	             <exclude name ="fnDeleteBookingMaster" />
+	             <exclude name ="fnDeleteBookingMaster_for_withoutInternet" />
+	            </methods>
+	   </class>
+	   </classes>
+   </test> 
+</suite> 

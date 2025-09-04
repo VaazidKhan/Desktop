@@ -1,0 +1,14 @@
+2025-09-03 20:13:26 INFO  commonClass.ConfigReader - Loaded config.properties from file system: config/config.properties
+2025-09-03 20:13:26 INFO  commonClass.ConfigReader - Loaded strings.xml from classpath: strings/strings.xml
+2025-09-03 20:13:42 INFO  Listeners.Listener - Configuration method passed: setUp
+2025-09-03 20:13:42 INFO  Listeners.Listener - Configuration method passed: fnBeforeClass
+2025-09-03 20:13:43 INFO  commonClass.BaseClass - Attempting login with username: vaazid.khan@effiasoft.com
+2025-09-03 20:13:44 INFO  commonClass.BaseClass - Username field found and enabled
+2025-09-03 20:13:46 INFO  commonClass.BaseClass - Entered username: vaazid.khan@effiasoft.com
+2025-09-03 20:13:46 INFO  commonClass.BaseClass - Password field found and enabled
+2025-09-03 20:13:47 INFO  commonClass.BaseClass - Entered password
+2025-09-03 20:13:47 INFO  commonClass.BaseClass - Clicking Sign In button
+2025-09-03 20:13:48 INFO  commonClass.BaseClass - Login method executed
+2025-09-03 20:14:19 ERROR commonClass.BaseClass - Failed to click menu button
+2025-09-03 20:14:19 WARN  Listeners.Listener - Test skipped: fnVerifyEditProductCategoryFeature
+2025-09-03 20:14:19 INFO  Listeners.Listener - Configuration method passed: tearDown

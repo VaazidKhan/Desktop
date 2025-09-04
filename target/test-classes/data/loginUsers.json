@@ -1,16 +1,16 @@
 {
 	"invalidUser":{
 		"username":"invalidusername",
-		"password":"Welcome1"
+		"password":"123456"
 	},
 	
 	"invalidPassword":{
-		"username":"servicesampark@gmail.com",
+		"username":"vaazid.khan@effiasoft.com",
 		"password":"invalidpassword"
 	},
 	
 	"validUser":{
-		"username":"servicesampark@gmail.com",
-		"password":"Welcome1"
+		"username":"vaazid.khan@effiasoft.com",
+		"password":"123456"
 	}
 }
