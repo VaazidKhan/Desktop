@@ -15,14 +15,22 @@
     <Loggers>
         <!-- Suppress TestNG internal INFO logs -->
         <Logger name="org.testng.internal.Utils" level="warn" additivity="false">
-            <AppenderRef ref="FileLogger"/>
-            <AppenderRef ref="Console"/>
+			<AppenderRef ref="FileLogger" />
+			<AppenderRef ref="Console" />
         </Logger>
 
         <!-- Root Logger -->
         <Root level="info">
-            <AppenderRef ref="Console"/>
-            <AppenderRef ref="FileLogger"/>
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="FileLogger" />
         </Root>
+        <Root level="pass">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="FileLogger" />
+        </Root>
+		<Root level="fail">
+		<AppenderRef ref="Console" />
+		<AppenderRef ref="FileLogger" />
+		</Root>
     </Loggers>
 </Configuration>

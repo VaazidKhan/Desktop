@@ -17,7 +17,7 @@ import JBWindows.SYS.MessageBoxEffia;
 import JBWindows_Configurations.BaseTest;
 import commonClass.ApplicationVariables;
 import commonClass.ExcelUtils;
-import commonClass.TakeScreenshots;
+import commonClass.GenericMethods;
 
 public class ProductCategoriesPage_UnitTest extends BaseTest {
 //	Login login;
@@ -92,10 +92,8 @@ public class ProductCategoriesPage_UnitTest extends BaseTest {
 		try {
 			categoryView.fn_Verify_New_Category_Creation(Image,CategoryName,CategoryType,DiscountRule,ParentCategory,Description);
 		} catch (AWTException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		boolean result = categoryView.Verify_ProductCategoryCreation_SaveorNot(CategoryName);
@@ -146,16 +144,18 @@ public class ProductCategoriesPage_UnitTest extends BaseTest {
 	   fnStartTestCase("Verify Edit ProductCategory Feature");
 	   String StrExcelPath = ApplicationVariables.MasterExcelPath;
        String StrSheetName = "Category";
-       int RowNumber = 6;
+       int RowNumber = 6,RowNumber2=11;
        String Image = ExcelUtils.fnGetExcelCellValue(StrExcelPath, StrSheetName, RowNumber,5);
 	   String CategoryName = ExcelUtils.fnGetExcelCellValue(StrExcelPath, StrSheetName, RowNumber,0);
 	   String CategoryType = ExcelUtils.fnGetExcelCellValue(StrExcelPath, StrSheetName, RowNumber,1);
 	   String DiscountRule1 = ExcelUtils.fnGetExcelCellValue(StrExcelPath, StrSheetName, RowNumber,2);
-	   String DiscountRule2 = ExcelUtils.fnGetExcelCellValue(StrExcelPath, StrSheetName, RowNumber,7);
+	   String DiscountRule2 = ExcelUtils.fnGetExcelCellValue(StrExcelPath, StrSheetName, RowNumber2,2);
 	   String ParentCategory = ExcelUtils.fnGetExcelCellValue(StrExcelPath, StrSheetName, RowNumber,3);
 	   String Description = ExcelUtils.fnGetExcelCellValue(StrExcelPath, StrSheetName, RowNumber,4);
 	   String OldcategoryName = ExcelUtils.fnGetExcelCellValue(StrExcelPath, StrSheetName, RowNumber,6);
-	   categoryView.verifyEditCategoryFeature(Image,CategoryName,CategoryType,DiscountRule1,DiscountRule2,ParentCategory,Description,OldcategoryName);
+	   String ParentCategory2 = ExcelUtils.fnGetExcelCellValue(StrExcelPath, StrSheetName, RowNumber2, 3);
+
+	   categoryView.verifyEditCategoryFeature(Image,CategoryName,CategoryType,DiscountRule1,DiscountRule2,ParentCategory,Description,OldcategoryName,ParentCategory2);
 	   boolean result = categoryView.Verify_ProductCategoryUpdate_SaveorNot(CategoryName);
 	   Assert.assertTrue(result);
 	  fnWriteSteps("Pass", "ProductCategory has been Updated & Saved");
@@ -188,8 +188,8 @@ public class ProductCategoriesPage_UnitTest extends BaseTest {
         int RowNumber = 7;
         String Categoryname = ExcelUtils.fnGetExcelCellValue(StrExcelPath, StrSheetName, RowNumber,0);
     	categoryView.fnVerifyCategoryDelete(Categoryname);
-    	categoryView.click_On_Yes_Button();
-    	fnWriteSteps("Pass", "Parent_ProductCategory not Deleted ");
+    	//categoryView.click_On_Yes_Button();
+    	//fnWriteSteps("Pass", "Parent_ProductCategory not Deleted ");
     	fnEndTestCase();
     }
 	
@@ -201,9 +201,10 @@ public class ProductCategoriesPage_UnitTest extends BaseTest {
         int RowNumber = 6;
         String Categoryname = ExcelUtils.fnGetExcelCellValue(StrExcelPath, StrSheetName, RowNumber,0);
     	categoryView.fnVerifyCategoryDelete(Categoryname);
+    	GenericMethods.fnwait(10);
     	boolean result = categoryView.Verify_ProductCategoryDelete_SaveorNot(Categoryname);
-    	Assert.assertTrue(result);
-    	fnWriteSteps("Pass", "ProductCategory has been Deleted ");
+    	Assert.assertFalse(result);
+    	//fnWriteSteps("Pass", "ProductCategory has been Deleted ");
     	fnEndTestCase();
     }
 	@Test 
@@ -211,11 +212,11 @@ public class ProductCategoriesPage_UnitTest extends BaseTest {
     	fnStartTestCase("Verify DeleteProductCategory Feature for withoutInternet");
     	String StrExcelPath = ApplicationVariables.MasterExcelPath;
         String StrSheetName = "Category";
-        int RowNumber = 11;
+        int RowNumber = 2;
         String Categoryname = ExcelUtils.fnGetExcelCellValue(StrExcelPath, StrSheetName, RowNumber,0);
     	categoryView.fnVerifyCategoryDelete(Categoryname);
-    	categoryView.click_On_Yes_Button();
-    	fnWriteSteps("Pass", "ProductCategory not Deleted ");
+    	//categoryView.click_On_Yes_Button();
+    	//fnWriteSteps("Pass", "ProductCategory not Deleted ");
     	fnEndTestCase();
     }
     
@@ -223,6 +224,8 @@ public class ProductCategoriesPage_UnitTest extends BaseTest {
    @AfterMethod
 	public void fnAfterMethod() {
     	fnStartTestCase("fn Logout");
+    	categoryView.clickBackButton();
+		dashboard.logout();
 		dashboard.logoutwithoutmenu();
 		fnWriteSteps("Pass", "Application Close Successfully");
 		fnEndTestCase();

@@ -37,9 +37,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import io.appium.java_client.windows.WindowsDriver;
-import io.appium.java_client.windows.WindowsElement;
-
-import org.openqa.selenium.WebElement;
 
 
 public class GenericMethods extends BaseClass {
@@ -812,12 +809,8 @@ public class GenericMethods extends BaseClass {
 		}
 	}
 
-	// --------------------------Only for Windows
-	// App-------------------------------
 
 	/*
-	 * 28-June-18-----Added by Moumita
-	 * 
 	 * @purpose: To delete the record by delete icon from master page
 	 * 
 	 * @Parameter: element

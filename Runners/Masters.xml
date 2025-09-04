@@ -19,7 +19,7 @@
 					<exclude name ="fnverifyParent_Product_CategoryCreation" />
 					<exclude name ="fnverify_Product_CategoryCreation_for_withoutInternet_Validation" />
 					<exclude name ="fnverifyNewProduct_CategoryCreation" />
-					<include name ="fnVerifyEditProductCategoryFeature" />
+					<exclude name ="fnVerifyEditProductCategoryFeature" />
 					<exclude name ="fnverifyProduct_CategoryCreation_for_MultiDiscountFeature" />
 					<exclude name ="fnVerifyDeleteParent_Product_CategoryFeature" />
 					<exclude name ="fnVerifyDeleteCategoryFeature" />

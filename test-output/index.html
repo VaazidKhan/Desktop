@@ -39,7 +39,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Windows_Retail_Masters" class="navigator-link">
-              <span class="suite-name border-skipped">Windows_Retail_Masters</span>
+              <span class="suite-name border-passed">Windows_Retail_Masters</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -92,21 +92,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,  1 skipped,  </span>
+                    <span class="method-stats">1 method,   1 passed</span>
                   </li>
                   <li>
-                    <span class="method-list-title skipped">Skipped methods</span>
-                    <span class="show-or-hide-methods skipped">
-                      <a href="#" panel-name="suite-Windows_Retail_Masters" class="hide-methods skipped suite-Windows_Retail_Masters"> (hide)</a> <!-- hide-methods skipped suite-Windows_Retail_Masters -->
-                      <a href="#" panel-name="suite-Windows_Retail_Masters" class="show-methods skipped suite-Windows_Retail_Masters"> (show)</a> <!-- show-methods skipped suite-Windows_Retail_Masters -->
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-Windows_Retail_Masters" class="hide-methods passed suite-Windows_Retail_Masters"> (hide)</a> <!-- hide-methods passed suite-Windows_Retail_Masters -->
+                      <a href="#" panel-name="suite-Windows_Retail_Masters" class="show-methods passed suite-Windows_Retail_Masters"> (show)</a> <!-- show-methods passed suite-Windows_Retail_Masters -->
                     </span>
-                    <div class="method-list-content skipped suite-Windows_Retail_Masters">
+                    <div class="method-list-content passed suite-Windows_Retail_Masters">
                       <span>
-                        <img src="skipped.png" width="3%"/>
-                        <a href="#" panel-name="suite-Windows_Retail_Masters" title="JBWindows_Masters.ProductCategoriesPage_UnitTest" class="method navigator-link" hash-for-method="fnVerifyEditProductCategoryFeature">fnVerifyEditProductCategoryFeature</a> <!-- method navigator-link -->
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Windows_Retail_Masters" title="JBWindows_Masters.ProductCategoriesPage_UnitTest" class="method navigator-link" hash-for-method="fnVerifyDelete_Product_CategoryFeature_for_withoutInternet_Validation">fnVerifyDelete_Product_CategoryFeature_for_withoutInternet_Validation</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content skipped suite-Windows_Retail_Masters -->
+                    </div> <!-- method-list-content passed suite-Windows_Retail_Masters -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -118,72 +118,21 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Windows_Retail_Masters" class="panel Windows_Retail_Masters">
-          <div class="suite-Windows_Retail_Masters-class-skipped">
+          <div class="suite-Windows_Retail_Masters-class-passed">
             <div class="main-panel-header rounded-window-top">
-              <img src="skipped.png"/>
+              <img src="passed.png"/>
               <span class="class-name">JBWindows_Masters.ProductCategoriesPage_UnitTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="fnVerifyEditProductCategoryFeature">
-                  </a> <!-- fnVerifyEditProductCategoryFeature -->
-                  <span class="method-name">fnVerifyEditProductCategoryFeature</span>
-                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator &apos;By.xpath: //*[@AutomationId=&apos;btnMenu&apos;]&apos; (tried for 30 second(s) with 500 milliseconds interval)
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
-	at commonClass.GenericMethods.fn_ConditionalWaitForElement(GenericMethods.java:217)
-	at JBWindows.APP.APP_Dashboard.clickMenuBtn(APP_Dashboard.java:272)
-	at JBWindows_Masters.ProductCategoriesPage_UnitTest.fbBeforeMethod(ProductCategoriesPage_UnitTest.java:55)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-Caused by: org.openqa.selenium.NoSuchElementException: An element could not be located on the page using the given search parameters. (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
-System info: host: &apos;VAAZID-KHAN-E42&apos;, ip: &apos;192.168.0.117&apos;, os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.9&apos;
-Driver info: io.appium.java_client.windows.WindowsDriver
-Capabilities {appTopLevelWindow: 00450928, javascriptEnabled: true, platform: WINDOWS, platformName: Windows}
-Session ID: F6E53B6E-0D2E-44E8-99EC-882B762310A6
-*** Element info: {Using=xpath, value=//*[@AutomationId=&apos;btnMenu&apos;]}
-	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
-	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
-	at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
-	at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:250)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:41)
-	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
-	at io.appium.java_client.windows.WindowsDriver.execute(WindowsDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:61)
-	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
-	at io.appium.java_client.windows.WindowsDriver.findElement(WindowsDriver.java:1)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElementByXPath(DefaultGenericMobileDriver.java:151)
-	at io.appium.java_client.AppiumDriver.findElementByXPath(AppiumDriver.java:1)
-	at io.appium.java_client.windows.WindowsDriver.findElementByXPath(WindowsDriver.java:1)
-	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
-	at io.appium.java_client.DefaultGenericMobileDriver.findElement(DefaultGenericMobileDriver.java:57)
-	at io.appium.java_client.AppiumDriver.findElement(AppiumDriver.java:1)
-	at io.appium.java_client.windows.WindowsDriver.findElement(WindowsDriver.java:1)
-	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
-	at jdk.proxy2/jdk.proxy2.$Proxy32.isDisplayed(Unknown Source)
-	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:314)
-	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:43)
-	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:300)
-	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:297)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
-	... 35 more
-... Removed 35 stack frames
-</div> <!-- stack-trace -->
+                  <a name="fnVerifyDelete_Product_CategoryFeature_for_withoutInternet_Validation">
+                  </a> <!-- fnVerifyDelete_Product_CategoryFeature_for_withoutInternet_Validation -->
+                  <span class="method-name">fnVerifyDelete_Product_CategoryFeature_for_withoutInternet_Validation</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Windows_Retail_Masters-class-skipped -->
+          </div> <!-- suite-Windows_Retail_Masters-class-passed -->
         </div> <!-- panel Windows_Retail_Masters -->
         <div panel-name="test-xml-Windows_Retail_Masters" class="panel">
           <div class="main-panel-header rounded-window-top">
@@ -206,16 +155,16 @@ Session ID: F6E53B6E-0D2E-44E8-99EC-882B762310A6
       &lt;/class&gt; &lt;!-- JBWindows_Masters.LoginPage_UnitTest --&gt;
       &lt;class name=&quot;JBWindows_Masters.ProductCategoriesPage_UnitTest&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;fnVerifyEditProductCategoryFeature&quot;/&gt;
+          &lt;include name=&quot;fnVerifyDelete_Product_CategoryFeature_for_withoutInternet_Validation&quot;/&gt;
           &lt;exclude name=&quot;fnVerifyFieldVisibility&quot;/&gt;
           &lt;exclude name=&quot;fnVerifyFieldEnableOrNot&quot;/&gt;
           &lt;exclude name=&quot;fnverifyParent_Product_CategoryCreation&quot;/&gt;
           &lt;exclude name=&quot;fnverify_Product_CategoryCreation_for_withoutInternet_Validation&quot;/&gt;
           &lt;exclude name=&quot;fnverifyNewProduct_CategoryCreation&quot;/&gt;
+          &lt;exclude name=&quot;fnVerifyEditProductCategoryFeature&quot;/&gt;
           &lt;exclude name=&quot;fnverifyProduct_CategoryCreation_for_MultiDiscountFeature&quot;/&gt;
           &lt;exclude name=&quot;fnVerifyDeleteParent_Product_CategoryFeature&quot;/&gt;
           &lt;exclude name=&quot;fnVerifyDeleteCategoryFeature&quot;/&gt;
-          &lt;exclude name=&quot;fnVerifyDelete_Product_CategoryFeature_for_withoutInternet_Validation&quot;/&gt;
         &lt;/methods&gt;
       &lt;/class&gt; &lt;!-- JBWindows_Masters.ProductCategoriesPage_UnitTest --&gt;
       &lt;class name=&quot;JBWindows_Masters.BrandPage_UnitTest&quot;&gt;
@@ -455,14 +404,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'fnVerifyEditProductCategoryFeature')
+data.setCell(0, 1, 'fnVerifyDelete_Product_CategoryFeature_for_withoutInternet_Validation')
 data.setCell(0, 2, 'JBWindows_Masters.ProductCategoriesPage_UnitTest')
-data.setCell(0, 3, 0);
+data.setCell(0, 3, 4325);
 window.suiteTableData['Windows_Retail_Masters']= { tableData: data, tableDiv: 'times-div-Windows_Retail_Masters'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 0 ms</span>
+              <span class="suite-total-time">Total running time: 4 seconds</span>
               <div id="times-div-Windows_Retail_Masters">
               </div> <!-- times-div-Windows_Retail_Masters -->
             </div> <!-- times-div -->
@@ -767,7 +716,7 @@ return data;
                 <br/>
                 <span class="ignored-method-name">fnVerifyDeleteParent_Product_CategoryFeature</span>
                 <br/>
-                <span class="ignored-method-name">fnVerifyDelete_Product_CategoryFeature_for_withoutInternet_Validation</span>
+                <span class="ignored-method-name">fnVerifyEditProductCategoryFeature</span>
                 <br/>
                 <span class="ignored-method-name">tearDown</span>
                 <br/>
@@ -892,20 +841,26 @@ return data;
               <div class="chronological-class-name">JBWindows_Masters.ProductCategoriesPage_UnitTest</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
                 <span class="method-name">fnBeforeClass</span>
-                <span class="method-start">16479 ms</span>
+                <span class="method-start">16533 ms</span>
               </div> <!-- configuration-class before -->
               <div class="configuration-method before">
-                <img src="failed.png">
-                </img>
                 <span class="method-name">fbBeforeMethod</span>
-                <span class="method-start">16509 ms</span>
+                <span class="method-start">16554 ms</span>
               </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">fnVerifyDelete_Product_CategoryFeature_for_withoutInternet_Validation</span>
+                <span class="method-start">45714 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">fnAfterMethod</span>
+                <span class="method-start">50042 ms</span>
+              </div> <!-- configuration-method after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">JBWindows_Masters.LoginPage_UnitTest</div> <!-- chronological-class-name -->
               <div class="configuration-suite after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">52943 ms</span>
+                <span class="method-start">73379 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

@@ -8,16 +8,16 @@
     <classes>
       <class name="JBWindows_Masters.ProductCategoriesPage_UnitTest">
     	<methods>
-					<exclude name ="fnVerifyFieldVisibility" />
-					<exclude name ="fnVerifyFieldEnableOrNot" />
-					<exclude name ="fnverifyParent_Product_CategoryCreation" />
-					<exclude name ="fnverify_Product_CategoryCreation_for_withoutInternet_Validation" />
-					<exclude name ="fnverifyNewProduct_CategoryCreation" />
-					<exclude name ="fnVerifyEditProductCategoryFeature" />
-					<exclude name ="fnverifyProduct_CategoryCreation_for_MultiDiscountFeature" />
-					<exclude name ="fnVerifyDeleteParent_Product_CategoryFeature" />
-					<exclude name ="fnVerifyDeleteCategoryFeature" />
-					<exclude name ="fnVerifyDelete_Product_CategoryFeature_for_withoutInternet_Validation" />
+					<include name ="fnVerifyFieldVisibility" />
+					<include name ="fnVerifyFieldEnableOrNot" />
+					<include name ="fnverifyParent_Product_CategoryCreation" />
+					<include name ="fnverify_Product_CategoryCreation_for_withoutInternet_Validation" />
+					<include name ="fnverifyNewProduct_CategoryCreation" />
+					<include name ="fnVerifyEditProductCategoryFeature" />
+					<include name ="fnverifyProduct_CategoryCreation_for_MultiDiscountFeature" />
+					<include name ="fnVerifyDeleteParent_Product_CategoryFeature" />
+					<include name ="fnVerifyDeleteCategoryFeature" />
+					<include name ="fnVerifyDelete_Product_CategoryFeature_for_withoutInternet_Validation" />
 				</methods>
 			</class>
     </classes>

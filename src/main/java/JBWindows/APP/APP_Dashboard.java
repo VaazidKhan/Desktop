@@ -1,5 +1,6 @@
 package JBWindows.APP;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -269,15 +270,30 @@ public class APP_Dashboard extends BaseClass {
 
     public APP_Dashboard clickMenuBtn() {
         try {
-        	GenericMethods.fn_ConditionalWaitForElement(menuFld, 30);
-            fnWriteSteps("INFO", "Clicking Menu button");
-            GenericMethods.fnwait(5);
-            menuFld.click();
-            //new Actions(driver).moveToElement(menuFld).click().perform();
-            fnWriteSteps("PASS", "Clicked Menu button");
+            WebDriverWait wait = new WebDriverWait(driver, 30);
 
+            // Wait until visible
+            WebElement menuBtn = wait.until(
+                ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@AutomationId='btnMenu']"))
+            );
+
+            // Ensure enabled before click
+            if (menuBtn.isDisplayed() && menuBtn.isEnabled()) {
+                fnWriteSteps("INFO", "Clicking Menu button");
+                GenericMethods.fnwait(2);
+
+                try {
+                    menuBtn.click();
+                } catch (Exception e) {
+                    new Actions(driver).moveToElement(menuBtn).click().perform();
+                }
+
+                fnWriteSteps("PASS", "Clicked Menu button");
+            } else {
+                throw new RuntimeException("Menu button is not interactable yet");
+            }
         } catch (Exception e) {
-        	fnWriteSteps("FAIL", "Failed to click menu button");
+            fnWriteSteps("FAIL", "Failed to click menu button - " + e.getMessage());
             throw e;
         }
         return this;

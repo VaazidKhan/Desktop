@@ -9,11 +9,11 @@
       <class name="JBWindows_Masters.ProductCategoriesPage_UnitTest">
         <methods>
           <include name="fnAfterMethod"/>
-          <include name="fnVerifyEditProductCategoryFeature"/>
           <include name="fbBeforeMethod"/>
           <include name="tearDown"/>
           <include name="fnBeforeClass"/>
           <include name="setUp"/>
+          <include name="fnVerifyDelete_Product_CategoryFeature_for_withoutInternet_Validation"/>
         </methods>
       </class> <!-- JBWindows_Masters.ProductCategoriesPage_UnitTest -->
     </classes>

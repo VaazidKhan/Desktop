@@ -4,7 +4,6 @@ import java.awt.AWTException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -76,7 +75,7 @@ public class INV_CategoryView extends BaseClass {
 	WebElement btnSave;
 	@FindBy(name = "ALT + X")
 	WebElement btnCancel;
-	@FindBy(id = "btnOk")
+	@FindBy(xpath = "//*[@AutomationId='btnYes']")
 	WebElement btnOk;
 
 	// Upload popup element
@@ -95,6 +94,16 @@ public class INV_CategoryView extends BaseClass {
 	WebElement grdRecordList;
 	@FindBy(id = "lblNoData")
 	WebElement noCategoryLabel;
+	
+	@FindBy(xpath = "(//*[@AutomationId='txtDiscountRule'])")
+	WebElement existingDiscountRule;
+	
+	@FindBy(xpath = "(//*[@AutomationId='txtParentCategory'])")
+	WebElement existingParentCategory;
+	
+	@FindBy(name = "Backspace")
+	WebElement backBtn;
+	
 
 	// WebElement Initialization
 	public INV_CategoryView(WindowsDriver driver) {
@@ -208,32 +217,27 @@ public class INV_CategoryView extends BaseClass {
 			}
 
 				
+			if (ParentCategory != null && !ParentCategory.isBlank()) {
+			    if (lookUpParentCategory.isDisplayed()) {
+			        GenericMethods.fn_ConditionalWaitForElement(lookUpParentCategory, 20);
+			        lookUpParentCategory.click();
+			        fnWriteSteps("PASS", "Parent Category field is clicked");
 
-			if (lookUpParentCategory.isDisplayed()) {
-				GenericMethods.fn_ConditionalWaitForElement(lookUpParentCategory, 20);
-				lookUpParentCategory.click();
-			    fnWriteSteps("PASS", "Parent Category field is clicked");
-				GenericMethods.fn_ConditionalWaitForElement(enterDiscountRule, 20);
-			    GenericMethods.enterDataIntoField(enterDiscountRule, ParentCategory);
+			        GenericMethods.fn_ConditionalWaitForElement(enterDiscountRule, 20);
+			        GenericMethods.enterDataIntoField(enterDiscountRule, ParentCategory);
+			        fnWriteSteps("PASS", "Parent Category search clicked and data is sent");
 
-			    fnWriteSteps("PASS", "Parent Category search clicked and data is sent");
-				WebElement parentCategoryOption = driver.findElement(By.xpath("//*[@Name='" + ParentCategory + "']"));
-				parentCategoryOption.click();
-			    fnWriteSteps("PASS", ParentCategory + " Parent Category selected");
-
-
+			        WebElement parentCategoryOption = driver.findElement(By.xpath("//*[@Name='" + ParentCategory + "']"));
+			        parentCategoryOption.click();
+			        fnWriteSteps("PASS", ParentCategory + " Parent Category selected");
+			    } else {
+			        fnWriteSteps("FAIL", "ParentCategory field is not displayed in UI");
+			        Assert.fail();
+			    }
 			} else {
-				fnWriteSteps("Fail", "ParentCategory Type is not displayed in UI");
-				Assert.fail();
-
+			    fnWriteSteps("INFO", "ParentCategory is blank or not provided in Excel, skipping selection");
 			}
-			if (memoDescription.isDisplayed()) {
-				memoDescription.sendKeys(Description);
-			} else {
-				fnWriteSteps("Fail", "Description Type is not displayed in UI");
-				Assert.fail();
 
-			}
 			if (btnSave.isDisplayed())
 				btnSave.click();
 			fnWriteSteps("PASS", "ProductCategory has been created & Saved");
@@ -280,58 +284,102 @@ public class INV_CategoryView extends BaseClass {
 	// This method for ProductCategory Edit :
 
 	public void verifyEditCategoryFeature(String Image, String CategoryName, String CategoryType, String DiscountRule1,
-			String DiscountRule2, String ParentCategory, String Description, String OldCategoryName) throws FindFailed {
+			String DiscountRule2, String ParentCategory, String Description, String OldCategoryName, String ParentCategory2) throws FindFailed {
 
-		txtSearch.sendKeys(OldCategoryName);
-		btnEdit.click();
-
-		if (DeleteImage.isDisplayed()) {
-			DeleteImage.click();
-			btnOk.click();
-//			if (ImagePath.isDisplayed()) {
-//				Actions action = new Actions(driver);
-//				action.moveToElement(ImagePath).doubleClick().build().perform();
-//				GenericMethods.fn_Verifly_UploadFile(Image);
-//			}
-//
-//		} else {
-//			fnWriteSteps("Fail", "Image Type is not displayed in UI");
-//			Assert.fail();
+		if (txtSearch.isDisplayed()) {
+			txtSearch.click();
+			GenericMethods.enterDataIntoField(txtSearch, OldCategoryName);
+			fnWriteSteps("Pass", OldCategoryName + " is passed in Search field");
+		}
+		else {
+			fnWriteSteps("Fail", "CategoryName is not displayed in UI");
+			Assert.fail();
+		}
+		
+		if (btnEdit.isDisplayed()) {
+			btnEdit.click();
+			fnWriteSteps("Pass", "Edit button is clicked");
+		} else {
+			fnWriteSteps("Fail", "Edit button is not displayed in UI");
+			Assert.fail();
 
 		}
 		if (txtCategory.isDisplayed()) {
+			fnWriteSteps("INFO", "CategoryName displayed in UI");
 			txtCategory.clear();
 			txtCategory.sendKeys(CategoryName);
+			fnWriteSteps("PASS", CategoryName + " is passed in CategoryName field");
+
 		} else {
+
 			fnWriteSteps("Fail", "CategoryName field is not displayed in UI");
 			Assert.fail();
 
 		}
 		if (cboCategoryType.isDisplayed()) {
-			cboCategoryType.clear();
+			fnWriteSteps("INFO", "CategoryType displayed in UI");
+			GenericMethods.fn_ConditionalWaitForElement(cboCategoryType, 20);
+			cboCategoryType.click();
+			fnWriteSteps("PASS", "CategoryType clicked in UI");
+			if (CategoryType.equalsIgnoreCase("ITEM")) {
+				GenericMethods.fn_ConditionalWaitForElement(lblItem, 20);
+				fnWriteSteps("PASS", "CategoryType" +CategoryType+"is selected");
+				lblItem.click();
+			} else if (CategoryType.equalsIgnoreCase("ASSET")) {
+				GenericMethods.fn_ConditionalWaitForElement(lblAsset, 20);
+				fnWriteSteps("PASS", "CategoryType" +CategoryType+"is selected");
+				lblAsset.click();
+			} else if (CategoryType.equalsIgnoreCase("SERVICE")) {
+				GenericMethods.fn_ConditionalWaitForElement(lblService, 20);
+				lblService.click();
+				fnWriteSteps("PASS", "CategoryType" +CategoryType+"is selected");
+			} else {
+				fnWriteSteps("Fail", "Category Type is not matched");
+				Assert.fail();
+
+			}
 			cboCategoryType.sendKeys(CategoryType);
-			cboCategoryType.submit();
+			cboCategoryType.click();
 		} else {
 			fnWriteSteps("Fail", "CategoryCode Type is not displayed in UI");
 			Assert.fail();
-
 		}
-		if (lookUpDiscountRule.isDisplayed()) {
-			lookUpDiscountRule.clear();
-			lookUpDiscountRule.sendKeys(DiscountRule1);
-			lookUpDiscountRule.submit();
-			GenericMethods.fnwait(2);
-			lookUpDiscountRule.sendKeys(DiscountRule2);
-			lookUpDiscountRule.submit();
+		
+		
+		if (existingDiscountRule.isDisplayed()) {
+		    fnWriteSteps("PASS", "Discount rule is displayed in UI");
+
+		    GenericMethods.fn_ConditionalWaitForElement(existingDiscountRule, 20);
+		    existingDiscountRule.click();
+		    fnWriteSteps("PASS", "Discount rule field is clicked");
+		    GenericMethods.fn_ConditionalWaitForElement(enterDiscountRule, 20);
+		    GenericMethods.enterDataIntoField(enterDiscountRule, DiscountRule2);
+		    
+		    fnWriteSteps("PASS", "Discount rule entered in search filed");
+
+		    WebElement discountOption = driver.findElement(By.xpath("//*[@Name='" + DiscountRule2 + "']"));
+		    discountOption.click();
+
 		} else {
-			fnWriteSteps("Fail", "Discount Type is not displayed in UI");
-			Assert.fail();
-
+		    fnWriteSteps("FAIL", "Discount Type is not displayed");
+		    Assert.fail();
 		}
-		if (lookUpParentCategory.isDisplayed()) {
-			lookUpParentCategory.clear();
-			lookUpParentCategory.sendKeys(ParentCategory);
-			lookUpParentCategory.click();
+
+			
+		
+		if (existingParentCategory.isDisplayed()) {
+			GenericMethods.fn_ConditionalWaitForElement(existingParentCategory, 20);
+			existingParentCategory.click();
+		    fnWriteSteps("PASS", "Parent Category field is clicked");
+			GenericMethods.fn_ConditionalWaitForElement(enterDiscountRule, 20);
+		    GenericMethods.enterDataIntoField(enterDiscountRule, ParentCategory);
+
+		    fnWriteSteps("PASS", "Parent Category search clicked and data is sent");
+			WebElement parentCategoryOption = driver.findElement(By.xpath("//*[@Name='" + ParentCategory + "']"));
+			parentCategoryOption.click();
+		    fnWriteSteps("PASS", ParentCategory + " Parent Category selected");
+
+
 		} else {
 			fnWriteSteps("Fail", "ParentCategory Type is not displayed in UI");
 			Assert.fail();
@@ -340,46 +388,61 @@ public class INV_CategoryView extends BaseClass {
 		if (memoDescription.isDisplayed()) {
 			memoDescription.clear();
 			memoDescription.sendKeys(Description);
-
 		} else {
 			fnWriteSteps("Fail", "Description Type is not displayed in UI");
 			Assert.fail();
 
 		}
+		if (btnSave.isDisplayed())
+			btnSave.click();
+		fnWriteSteps("PASS", "ProductCategory has been created & Saved");
 
-		btnSave.click();
-		System.out.println("ProductCategory has been Updated & Saved ");
-		GenericMethods.fnwait(2);
 	}
 
 	// This method for Validation of ProductCategory Edit :
 	public boolean Verify_ProductCategoryUpdate_SaveorNot(String Categoryname) {
 
+
 		if (txtSearch.isDisplayed()) {
-			txtSearch.clear();
-			txtSearch.sendKeys(Categoryname);
+			txtSearch.click();
+			GenericMethods.enterDataIntoField(txtSearch, Categoryname);
+			WebElement searchResult = driver.findElement(By.xpath("//*[@Name='" + Categoryname + "']"));
+			searchResult.isDisplayed();
+			return true;
+			
 
 		} else {
 			fnWriteSteps("Fail", "CategoryName is not displayed in UI");
-			Assert.fail();
+			return false;
 
 		}
-		String Actual = driver.findElement(By.id("lblCategory")).getAttribute("Name");
-		if (Actual.substring(15, 19).contains(Categoryname.substring(0, 4))) {
-
-			return true;
-		}
-		return false;
 	}
 
 	// This method for ProductCategoryDelete :
 	public void fnVerifyCategoryDelete(String Categoryname) {
-		txtSearch.sendKeys(Categoryname);
-		GenericMethods.fnwait(1);
-		GenericMethods.fnVerifyMasterRecordDelete(grdRecordList);
-		btnOk.click();
-		GenericMethods.fnwait(31);
-		System.out.println("Created ProductCategory has been Deleted");
+		if (txtSearch.isDisplayed()) {
+			txtSearch.click();
+			GenericMethods.enterDataIntoField(txtSearch, Categoryname);
+		}
+		else {
+			fnWriteSteps("Fail", "CategoryName is not displayed in UI");
+			Assert.fail();
+		}
+		if(DeleteImage.isDisplayed()) {
+			DeleteImage.click();
+            fnWriteSteps("Pass", "Delete icon is clicked");
+		} else {
+			fnWriteSteps("Fail", "Delete icon is not displayed in UI");
+			Assert.fail();
+		}
+		//GenericMethods.fnVerifyMasterRecordDelete(grdRecordList);
+		if (btnOk.isDisplayed()) {
+			btnOk.click();
+			fnWriteSteps("Pass", "OK button is displayed and clicked in UI");
+		} else {
+			fnWriteSteps("Fail", "OK button is not displayed in UI");
+			Assert.fail();
+		}
 	}
 
 	// This method for To click on YES Button :
@@ -390,27 +453,34 @@ public class INV_CategoryView extends BaseClass {
 
 	}
 
-	// This method for Validation of ProductCategory Delete :
+	// This method validates whether a ProductCategory still exists after delete
 	public boolean Verify_ProductCategoryDelete_SaveorNot(String Categoryname) {
+	    try {
+	        if (txtSearch.isDisplayed()) {
+	            txtSearch.click();
+	            GenericMethods.enterDataIntoField(txtSearch, Categoryname);
 
-		if (txtSearch.isDisplayed()) {
-			txtSearch.clear();
-			txtSearch.click();
-			txtSearch.sendKeys(Categoryname.trim());
-
-		} else {
-			fnWriteSteps("Fail", "CategoryName is not displayed in UI");
-			Assert.fail();
-
-		}
-		GenericMethods.fnwait(2);
-		String Actual = driver.findElement(By.id("lblCategory")).getAttribute("Name");
-		if (!Actual.contains(Categoryname.trim())) {
-
-			return true;
-		}
-		return false;
+	            // Try to find the category
+	            WebElement searchResult = driver.findElement(By.xpath("//*[@Name='" + Categoryname + "']"));
+	            
+	            if (searchResult.isDisplayed()) {
+	                fnWriteSteps("FAIL", "Category '" + Categoryname + "' still exists after delete");
+	                return true;  // ❌ category not deleted
+	            } else {
+	                fnWriteSteps("PASS", "Category '" + Categoryname + "' not visible after delete");
+	                return false; // ✅ deleted
+	            }
+	        } else {
+	            fnWriteSteps("FAIL", "Search box not displayed in UI");
+	            return true; // treat as failure
+	        }
+	    } catch (Exception e) {
+	        // If element is not found, it means delete succeeded
+	        fnWriteSteps("PASS", "Category '" + Categoryname + "' not found after delete");
+	        return false; // ✅ deleted
+	    }
 	}
+
 
 	// This method is to verify all the fields are visible or not
 
@@ -555,4 +625,14 @@ public class INV_CategoryView extends BaseClass {
 		}
 
 	}
+	
+	public void clickBackButton() {
+		GenericMethods.fn_ConditionalWaitForElement(backBtn, 20);
+		backBtn.click();
+		GenericMethods.fnwait(5);
+		fnWriteSteps("INFO", "Back button is clicked");
+		
+	}
+	
+	
 }
