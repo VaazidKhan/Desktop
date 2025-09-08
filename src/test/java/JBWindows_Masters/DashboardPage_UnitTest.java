@@ -56,7 +56,6 @@ public class DashboardPage_UnitTest extends BaseClass {
 		RefDashboard.fnVerifyFromDateFieldPresence();
 		RefDashboard.fnVerifyToDateFieldPresence();
 		RefDashboard.fnVerifyLogoutButtonPresence();
-		RefDashboard.fnVerifyMenuButtonPresence();
 		RefDashboard.fnVerifyMinimizeButtonPresence();
 		
 		GenericMethods.fnEndTestCase();

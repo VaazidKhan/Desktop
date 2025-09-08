@@ -6,16 +6,17 @@
   </listeners>
   <test thread-count="5" name="Functional_Testing(failed)">
     <classes>
-      <class name="JBWindows_Masters.ProductCategoriesPage_UnitTest">
+      <class name="JBWindows_Masters.AgentPage_UnitTest">
         <methods>
-          <include name="fnAfterMethod"/>
-          <include name="fbBeforeMethod"/>
+          <include name="fnAgentCreation_for_WithoutInternet_Validation"/>
+          <include name="init"/>
+          <include name="fn_Login_and_Open_Page"/>
           <include name="tearDown"/>
-          <include name="fnBeforeClass"/>
+          <include name="fnDelete_Agent_for_WithoutInternet"/>
           <include name="setUp"/>
-          <include name="fnVerifyDelete_Product_CategoryFeature_for_withoutInternet_Validation"/>
+          <include name="fnAfterMethod"/>
         </methods>
-      </class> <!-- JBWindows_Masters.ProductCategoriesPage_UnitTest -->
+      </class> <!-- JBWindows_Masters.AgentPage_UnitTest -->
     </classes>
   </test> <!-- Functional_Testing(failed) -->
 </suite> <!-- Failed suite [Windows_Retail_Masters] -->

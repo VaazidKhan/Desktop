@@ -16,6 +16,10 @@ import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -38,12 +42,9 @@ import org.testng.Assert;
 
 import io.appium.java_client.windows.WindowsDriver;
 
-
 public class GenericMethods extends BaseClass {
-	
+
 	static int timeoutInSeconds = Integer.parseInt(ConfigReader.getProperty("timeoutInSeconds"));
-
-
 
 	public void fnOnButtonClick(String elementName) {
 		driver.findElement(By.id(elementName)).click();
@@ -74,57 +75,53 @@ public class GenericMethods extends BaseClass {
 		return driver.findElement(By.id(elementName)).isSelected();
 	}
 
+	public static WebElement waitForElement(By locator) {
+		WindowsDriver<WebElement> driver = ThreadLocalDriver.getDriver();
+		if (driver == null) {
+			LogClass.error("Driver is null, cannot wait for element");
+			return null;
+		}
 
- 
- public static WebElement waitForElement(By locator) {
-     WindowsDriver<WebElement> driver = ThreadLocalDriver.getDriver();
-     if (driver == null) {
-         LogClass.error("Driver is null, cannot wait for element");
-         return null;
-     }
-     
-     try {
-         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
-         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-     } catch (Exception e) {
-         LogClass.error("Element not found: " + locator.toString());
-         return null;
-     }
- }
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+			return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+		} catch (Exception e) {
+			LogClass.error("Element not found: " + locator.toString());
+			return null;
+		}
+	}
 
-    
-    public static void fnStartTestCase(String testCaseName) {
-        LogClass.info("======= Starting Test Case: " + testCaseName + " =======");
-    }
-    
-    public static void fnEndTestCase() {
-        LogClass.info("======= Ending Test Case =======");
-    }
-    
-    public static String takeScreenshot(String testName) {
-        WindowsDriver<WebElement> driver = ThreadLocalDriver.getDriver();
-        if (driver == null) {
-            LogClass.warn("Driver is null, cannot take screenshot");
-            return null;
-        }
+	public static void fnStartTestCase(String testCaseName) {
+		LogClass.info("======= Starting Test Case: " + testCaseName + " =======");
+	}
 
-        try {
-            File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            String dateName = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            String destDir = System.getProperty("user.dir") + "/Reports/TestScreenshots/";
-            String destPath = destDir + testName + "_" + dateName + ".png";
+	public static void fnEndTestCase() {
+		LogClass.info("======= Ending Test Case =======");
+	}
 
-            Files.createDirectories(new File(destDir).toPath());
-            Files.copy(src.toPath(), new File(destPath).toPath());
-            
-            LogClass.info("Screenshot saved: " + destPath);
-            return destPath;
-        } catch (IOException e) {
-            LogClass.error("Failed to take screenshot: " + e.getMessage());
-            return null;
-        }
-    }
+	public static String takeScreenshot(String testName) {
+		WindowsDriver<WebElement> driver = ThreadLocalDriver.getDriver();
+		if (driver == null) {
+			LogClass.warn("Driver is null, cannot take screenshot");
+			return null;
+		}
 
+		try {
+			File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+			String dateName = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+			String destDir = System.getProperty("user.dir") + "/Reports/TestScreenshots/";
+			String destPath = destDir + testName + "_" + dateName + ".png";
+
+			Files.createDirectories(new File(destDir).toPath());
+			Files.copy(src.toPath(), new File(destPath).toPath());
+
+			LogClass.info("Screenshot saved: " + destPath);
+			return destPath;
+		} catch (IOException e) {
+			LogClass.error("Failed to take screenshot: " + e.getMessage());
+			return null;
+		}
+	}
 
 	/*
 	 * ConvertIntegerInToFloatAndString
@@ -143,8 +140,8 @@ public class GenericMethods extends BaseClass {
 	/*
 	 * Generate Random Number
 	 * 
-	 * @parameter: Start number to End number (between this random number will
-	 * be generated)
+	 * @parameter: Start number to End number (between this random number will be
+	 * generated)
 	 */
 	public static String fnGenRandNumber(int Max, int Min) {
 		Random Rand = new Random();
@@ -208,12 +205,12 @@ public class GenericMethods extends BaseClass {
 	 * 
 	 * @parameter: Element name, Wait time, Windows or Web
 	 */
-    public static void fn_ConditionalWaitForElement(WebElement ElementName, int intWaitTimeInSeconds) {
-        WebDriverWait wait;
-            wait = new WebDriverWait(driver, intWaitTimeInSeconds);
-            wait.until(ExpectedConditions.visibilityOf(ElementName));
-            
-    }
+	public static void fn_ConditionalWaitForElement(WebElement ElementName, int intWaitTimeInSeconds) {
+		WebDriverWait wait;
+		wait = new WebDriverWait(driver, intWaitTimeInSeconds);
+		wait.until(ExpectedConditions.visibilityOf(ElementName));
+
+	}
 
 	/*
 	 * Perform double click on element
@@ -235,9 +232,8 @@ public class GenericMethods extends BaseClass {
 
 	/*
 	 * public static Date fnGetDateTimeValue(String elementName, String
-	 * elementValue) throws java.text.ParseException { Date dtValue = null;
-	 * dtValue =
-	 * fnformatPrintDateTimeObject(driver.findElement(By.id(elementName)).
+	 * elementValue) throws java.text.ParseException { Date dtValue = null; dtValue
+	 * = fnformatPrintDateTimeObject(driver.findElement(By.id(elementName)).
 	 * getText()) ; return dtValue; }
 	 */
 
@@ -245,7 +241,6 @@ public class GenericMethods extends BaseClass {
 		SimpleDateFormat formatter;
 		Date returnDate = new Date(0);
 		Locale locale = Locale.ENGLISH;
-
 
 		if (date != null) {
 			Calendar calendar = Calendar.getInstance();
@@ -261,80 +256,80 @@ public class GenericMethods extends BaseClass {
 	public static String fnGetCurrentDate() {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/YYYY");
 		Date date = new Date();
-		String formatdate= dateFormat.format(date).replace("/","_").replace(" ","_").replace(":","_");
-	
-		return formatdate;
-		
-	}
-	
-	/**
-     * Generic method to set value in a Windows text box
-     * Supports multiple identification strategies: ID, Name, AutomationId, XPath
-     * 
-     * @param identifierType Type of identifier ("id", "name", "automationid", "xpath")
-     * @param identifierValue Value of the identifier
-     * @param value Value to set in the text box
-     * @param timeoutInSeconds Maximum wait time in seconds
-     * @return true if successful, false otherwise
-     */
-    public static boolean windows_Set_TextBoxValue(String identifierType, String identifierValue, String value) {
-        WindowsDriver<WebElement> driver = ThreadLocalDriver.getDriver();
-        if (driver == null) {
-            LogClass.error("Driver is null, cannot set text box value");
-            return false;
-        }
-        
-        try {
-            WebElement textBox = null;
-            WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
-            
-            // Determine locator strategy and find element
-            switch (identifierType.toLowerCase()) {
-                case "id":
-                    textBox = wait.until(ExpectedConditions.elementToBeClickable(By.id(identifierValue)));
-                    break;
-                case "name":
-                    textBox = wait.until(ExpectedConditions.elementToBeClickable(By.name(identifierValue)));
-                    break;
-                case "automationid":
-                    textBox = wait.until(ExpectedConditions.elementToBeClickable(
-                        By.xpath("//*[@AutomationId='" + identifierValue + "']")));
-                    break;
-                case "xpath":
-                    textBox = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(identifierValue)));
-                    break;
-                default:
-                    LogClass.error("Unsupported identifier type: " + identifierType);
-                    return false;
-            }
-            
-            if (textBox == null) {
-                LogClass.error("Text box not found with " + identifierType + ": " + identifierValue);
-                return false;
-            }
-            
-            // Clear existing text using multiple strategies
-            textBox.click();
-            textBox.sendKeys(Keys.CONTROL + "a");
-            textBox.sendKeys(Keys.DELETE);
-            textBox.clear();
-            
-            // Set new value
-            textBox.sendKeys(value);
-            
-            LogClass.info("Set text box value: " + identifierValue + " = " + value);
-            fnWriteSteps("PASS", "Set text box value: " + identifierValue + " = " + value);
-            
-            return true;
-            
-        } catch (Exception e) {
-            LogClass.error("Failed to set text box value for " + identifierType + ": " + identifierValue + 
-                          ". Error: " + e.getMessage());
-            fnWriteSteps("FAIL", "Failed to set text box value: " + identifierValue);
-            return false;
-        }
-    }
+		String formatdate = dateFormat.format(date).replace("/", "_").replace(" ", "_").replace(":", "_");
 
+		return formatdate;
+
+	}
+
+	/**
+	 * Generic method to set value in a Windows text box Supports multiple
+	 * identification strategies: ID, Name, AutomationId, XPath
+	 * 
+	 * @param identifierType   Type of identifier ("id", "name", "automationid",
+	 *                         "xpath")
+	 * @param identifierValue  Value of the identifier
+	 * @param value            Value to set in the text box
+	 * @param timeoutInSeconds Maximum wait time in seconds
+	 * @return true if successful, false otherwise
+	 */
+	public static boolean windows_Set_TextBoxValue(String identifierType, String identifierValue, String value) {
+		WindowsDriver<WebElement> driver = ThreadLocalDriver.getDriver();
+		if (driver == null) {
+			LogClass.error("Driver is null, cannot set text box value");
+			return false;
+		}
+
+		try {
+			WebElement textBox = null;
+			WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
+
+			// Determine locator strategy and find element
+			switch (identifierType.toLowerCase()) {
+			case "id":
+				textBox = wait.until(ExpectedConditions.elementToBeClickable(By.id(identifierValue)));
+				break;
+			case "name":
+				textBox = wait.until(ExpectedConditions.elementToBeClickable(By.name(identifierValue)));
+				break;
+			case "automationid":
+				textBox = wait.until(ExpectedConditions
+						.elementToBeClickable(By.xpath("//*[@AutomationId='" + identifierValue + "']")));
+				break;
+			case "xpath":
+				textBox = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(identifierValue)));
+				break;
+			default:
+				LogClass.error("Unsupported identifier type: " + identifierType);
+				return false;
+			}
+
+			if (textBox == null) {
+				LogClass.error("Text box not found with " + identifierType + ": " + identifierValue);
+				return false;
+			}
+
+			// Clear existing text using multiple strategies
+			textBox.click();
+			textBox.sendKeys(Keys.CONTROL + "a");
+			textBox.sendKeys(Keys.DELETE);
+			textBox.clear();
+
+			// Set new value
+			textBox.sendKeys(value);
+
+			LogClass.info("Set text box value: " + identifierValue + " = " + value);
+			fnWriteSteps("PASS", "Set text box value: " + identifierValue + " = " + value);
+
+			return true;
+
+		} catch (Exception e) {
+			LogClass.error("Failed to set text box value for " + identifierType + ": " + identifierValue + ". Error: "
+					+ e.getMessage());
+			fnWriteSteps("FAIL", "Failed to set text box value: " + identifierValue);
+			return false;
+		}
+	}
 
 	public static String fnformatPrintDateObject(String date, String strExcelDateFormat)
 			throws java.text.ParseException {
@@ -347,18 +342,16 @@ public class GenericMethods extends BaseClass {
 		Date startDate = df.parse(date);
 
 		/*
-		 * // Print the date, with the default formatting. // Here, the
-		 * important thing to note is that the parts of the date // were
-		 * correctly interpreted, such as day, month, year etc.
-		 * System.out.println("Date, with the default formatting: " +
-		 * startDate);
+		 * // Print the date, with the default formatting. // Here, the important thing
+		 * to note is that the parts of the date // were correctly interpreted, such as
+		 * day, month, year etc.
+		 * System.out.println("Date, with the default formatting: " + startDate);
 		 */
 
 		/*
-		 * // Once converted to a Date object, you can convert // back to a
-		 * String using any desired format. String startDateString1 =
-		 * df.format(startDate); System.out.println(
-		 * "Date in format MM/dd/yyyy: " + startDateString1);
+		 * // Once converted to a Date object, you can convert // back to a String using
+		 * any desired format. String startDateString1 = df.format(startDate);
+		 * System.out.println( "Date in format MM/dd/yyyy: " + startDateString1);
 		 */
 
 		// Converting to String again, using an alternative format
@@ -443,13 +436,12 @@ public class GenericMethods extends BaseClass {
 	}
 
 	public static void fn_SetTextBoxValue(WebElement element, String strTextFieldValue) {
-		
+
 		fn_Scroll_Web_Page(element);
 		if (element.isDisplayed()) {
 			if (element.isEnabled()) {
 				fn_WebElement_Highlight("Web", element);
 
-				
 				if (strTextFieldValue != null) {
 					GenericMethods.fnwait(2);
 					element.click();
@@ -532,7 +524,7 @@ public class GenericMethods extends BaseClass {
 			if (element.isEnabled()) {
 				fn_WebElement_Highlight("Web", element);
 				fnwait(2);
-				 element.click();
+				element.click();
 				fnwait(5);
 				if (strFilePath != null) {
 					System.out.println(strFilePath);
@@ -760,22 +752,22 @@ public class GenericMethods extends BaseClass {
 		return boolRecordExist;
 	}
 
-    public static boolean fn_Wait_For_LoadingPanel_Disappear(int intSeconds, By WebElementLocator) {
-        WebDriverWait refDisappearWait = new WebDriverWait(driver, intSeconds);
-        boolean element = refDisappearWait.until(ExpectedConditions.invisibilityOfElementLocated(WebElementLocator));
-        return element;
-    }
+	public static boolean fn_Wait_For_LoadingPanel_Disappear(int intSeconds, By WebElementLocator) {
+		WebDriverWait refDisappearWait = new WebDriverWait(driver, intSeconds);
+		boolean element = refDisappearWait.until(ExpectedConditions.invisibilityOfElementLocated(WebElementLocator));
+		return element;
+	}
 
-    public static void fn_ConditionalWaitForElementToDisappear(String strWindowORWeb, String strElementLocatorID,
-            int intWaitTimeInSeconds) {
-        WebDriverWait wait;
-        switch (strWindowORWeb.trim().toLowerCase()) {
-        case "windows":
-            wait = new WebDriverWait(driver, intWaitTimeInSeconds);
-            wait.until(ExpectedConditions.invisibilityOfElementWithText(By.id(strElementLocatorID), "Loading Panel"));
-            break;
-        }
-    }
+	public static void fn_ConditionalWaitForElementToDisappear(String strWindowORWeb, String strElementLocatorID,
+			int intWaitTimeInSeconds) {
+		WebDriverWait wait;
+		switch (strWindowORWeb.trim().toLowerCase()) {
+		case "windows":
+			wait = new WebDriverWait(driver, intWaitTimeInSeconds);
+			wait.until(ExpectedConditions.invisibilityOfElementWithText(By.id(strElementLocatorID), "Loading Panel"));
+			break;
+		}
+	}
 
 	// verification is pending
 	public static void fn_Search_And_Select_Row_From_MasterDataGrid(WebElement eleSearchBox, WebElement eleSearchIcon,
@@ -798,17 +790,14 @@ public class GenericMethods extends BaseClass {
 			WebElement rowColumnElement = elementTableGrid.findElement(By.xpath(rowWiseXpathID));
 			if (rowColumnElement.getText().toLowerCase().equals(strSearchKeyword.toLowerCase().trim())) {
 				/*
-				 * String rowColumnElementID = MainTableGrid_Xpath + "//tr[" +
-				 * RowNum + "]//td[" + intRowActionColumnPosition + "]//a[1]";
-				 * WebElement btnEdit =
-				 * elementTableGrid.findElement(By.xpath(rowColumnElementID));
-				 * btnEdit.click();
+				 * String rowColumnElementID = MainTableGrid_Xpath + "//tr[" + RowNum + "]//td["
+				 * + intRowActionColumnPosition + "]//a[1]"; WebElement btnEdit =
+				 * elementTableGrid.findElement(By.xpath(rowColumnElementID)); btnEdit.click();
 				 */
 				GenericMethods.fnwait(10);
 			}
 		}
 	}
-
 
 	/*
 	 * @purpose: To delete the record by delete icon from master page
@@ -836,11 +825,11 @@ public class GenericMethods extends BaseClass {
 		Actions builder1 = new Actions(driver);
 		builder1.click().build().perform();
 	}
-	
+
 	public static void fn_Verifly_UploadFile(String UpLoadPath) {
-		StringSelection selection  = new StringSelection(UpLoadPath);
-	       Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
-	    Robot robot;
+		StringSelection selection = new StringSelection(UpLoadPath);
+		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
+		Robot robot;
 		try {
 			fnwait(1);
 			robot = new Robot();
@@ -855,9 +844,9 @@ public class GenericMethods extends BaseClass {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    
-		
+
 	}
+
 	public static void fn_Check_CheckBox(WebElement element, String strValidation) {
 		if (element.isEnabled() && element.isDisplayed()) {
 			if (strValidation.trim().equalsIgnoreCase("yes")) {
@@ -865,7 +854,7 @@ public class GenericMethods extends BaseClass {
 					System.out.println("clicking the  unchecked box");
 					element.click();
 					System.out.println("clicked the check box");
-				}else{
+				} else {
 					System.out.println("Alredy  checked");
 				}
 			} else {
@@ -880,205 +869,167 @@ public class GenericMethods extends BaseClass {
 
 		}
 	}
-	
-	
-	public static String getPropertyValue(String key){
-		
-	String value=null;
-		Properties prop=null;
-		FileInputStream refprop=null;
+
+	public static String getPropertyValue(String key) {
+
+		String value = null;
+		Properties prop = null;
+		FileInputStream refprop = null;
 		try {
-			prop=new Properties();
-			refprop=new FileInputStream(System.getProperty("user.dir")+"\\Properties\\configure.properties");
+			prop = new Properties();
+			refprop = new FileInputStream(System.getProperty("user.dir") + "\\Properties\\configure.properties");
 			prop.load(refprop);
-		 value=prop.getProperty(key);
-			
-			
+			value = prop.getProperty(key);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO: handle exception
 		}
-	
-return value;
-	}
-	
-	public static String currentDate(){
-		   Date date = Calendar.getInstance().getTime();  
-           DateFormat dateFormat = new SimpleDateFormat("yyyy-M-dd hh:mm:ss");  
-           String strDate = dateFormat.format(date);
-          String format=  strDate.replace(" ","_").replace(":","_");
-          return format;
-		
-	}
-	
-	//Genric method to select Standard Sales Order Type in Windows
-public static void select_Standard_SalesOrderType(WebElement element,String field) {
-	element.click();
-	Actions actions=new Actions(driver);
-	switch (field) {
-	case "standard":
-		actions.moveToElement(driver.findElement(By.name("STANDARD"))).click().build().perform();
-		break;
 
-	case "home delivery":
-		actions.moveToElement(driver.findElement(By.name("Home Delivery"))).click().build().perform();
-		break;
+		return value;
 	}
-	
-}
 
-  //Genric method to enter textbox value in windows
-public static void windows_Set_TextBoxValue(WebElement element,String strTextValue ) {
-	element.clear();
-	element.sendKeys(strTextValue);
-	element.click();
-}
+	public static String currentDate() {
+		Date date = Calendar.getInstance().getTime();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-M-dd hh:mm:ss");
+		String strDate = dateFormat.format(date);
+		String format = strDate.replace(" ", "_").replace(":", "_");
+		return format;
+
+	}
+
+	// Genric method to select Standard Sales Order Type in Windows
+	public static void select_Standard_SalesOrderType(WebElement element, String field) {
+		element.click();
+		Actions actions = new Actions(driver);
+		switch (field) {
+		case "standard":
+			actions.moveToElement(driver.findElement(By.name("STANDARD"))).click().build().perform();
+			break;
+
+		case "home delivery":
+			actions.moveToElement(driver.findElement(By.name("Home Delivery"))).click().build().perform();
+			break;
+		}
+
+	}
+
+	// Genric method to enter textbox value in windows
+	public static void windows_Set_TextBoxValue(WebElement element, String strTextValue) {
+		element.clear();
+		element.sendKeys(strTextValue);
+		element.click();
+	}
+
 //Genric method to select drop down value
-public static void windows_Set_DropDown_Value(WebElement element, String strValue) {
-    element.sendKeys(strValue);
-	element.submit();
-}
-
-
-public static WebElement scrollToText(String visibleText, String containerAutomationId) {
-    WebElement element = null;
-    boolean found = false;
-    int maxScroll = 40; // safety limit
-    int count = 0;
-
-    // focus the scrollable container by AutomationId
-    WebElement container = driver.findElement(By.xpath("//*[@AutomationId='"+visibleText+"']"));
-    container.click();  // bring focus, not an item
-
-    while (!found && count < maxScroll) {
-        try {
-            element = driver.findElement(By.name(visibleText));
-            if (element.isDisplayed()) {
-                found = true;
-                break;
-            }
-        } catch (NoSuchElementException e) {
-            // scroll down inside container
-            container.sendKeys(Keys.ARROW_DOWN);
-        }
-        count++;
-    }
-
-    if (!found) {
-        throw new RuntimeException("Element with text '" + visibleText + "' not found after scrolling.");
-    }
-
-    return element;
-}
-
-
-// Scroll until WebElement is visible
-public static void scrollToElement(WebElement element) {
-    int maxScroll = 50;
-    int count = 0;
-
-    while (!element.isDisplayed() && count < maxScroll) {
-        new Actions(driver).sendKeys(Keys.PAGE_DOWN).perform();
-        count++;
-    }
-}
-
-public static void listItemSelect(WebElement element ,String value, WindowsDriver driver) {
-	boolean found = false;
-    element.sendKeys(Keys.TAB);
-    for (int i = 0; i < 20; i++) {   // loop limit to avoid infinite loop
-        // Send ARROW_DOWN key
-        element.sendKeys(Keys.ARROW_DOWN);
-        GenericMethods.fnwait(3);  // wait for the UI to update
-        // Fetch currently highlighted item text
-        WebElement highlighted = driver.switchTo().activeElement();
-        String currentText = highlighted.getText().trim();
-        System.out.println("Current option: " + currentText);
-
-        if (currentText.equalsIgnoreCase(value)) {
-            highlighted.sendKeys(Keys.ENTER);  // select the option
-            fnWriteSteps("PASS", "Discount rule '" + value + "' selected");
-            found = true;
-            break;
-        }
-    }
-
-    if (!found) {
-        fnWriteSteps("FAIL", "Discount rule '" + value + "' not found while scrolling");
-        Assert.fail("Discount rule not found: " + value);
-    }
-	
-}
-
-public static void listItemSelectwithRobot(WebElement element, String value, WindowsDriver driver) throws AWTException, InterruptedException {
-    boolean found = false;
-
-    // Focus on the dropdown first
-    element.click();
-    fnWriteSteps("INFO", "Dropdown focused before Robot navigation");
-
-    Robot robot = new Robot();
-
-    for (int i = 0; i < 20; i++) {  // loop limit to avoid infinite loop
-        // Press Arrow Down
-        robot.keyPress(KeyEvent.VK_DOWN);
-        robot.keyRelease(KeyEvent.VK_DOWN);
-
-        fnwait(1);  // let UI update
-
-        // Fetch highlighted text from active element
-        WebElement highlighted = driver.switchTo().activeElement();
-        String currentText = highlighted.getText().trim();
-        fnWriteSteps("INFO", "Current option: " + currentText);
-        
-
-        if (currentText.equalsIgnoreCase(value)) {
-            highlighted.sendKeys(Keys.ENTER);  // select it
-            fnWriteSteps("PASS", "Discount rule '" + value + "' selected");
-            found = true;
-            break;
-        }
-    }
-
-    if (!found) {
-        fnWriteSteps("FAIL", "Discount rule '" + value + "' not found while scrolling");
-        Assert.fail("Discount rule not found: " + value);
-    }
-}
-
-public static void selectOptioFromList(WindowsDriver driver, String value) {
-    // Wait for dropdown options to appear
-    List<WebElement> options = driver.findElements(By.xpath("//*[@ClassName='TextBlock']"));
-
-    for (WebElement option : options) {
-        String text = option.getAttribute("name").trim(); // For WinAppDriver, Name is safer than getText()
-        System.out.println("Option: " + text);
-
-        if (text.equalsIgnoreCase(value)) {
-            option.click();
-            fnWriteSteps("PASS", "Discount rule '" + value + "' selected");
-            return;
-        }
-    }
-
-    fnWriteSteps("FAIL", "Discount rule '" + value + "' not found in list");
-    Assert.fail("Discount rule not found: " + value);
-}
-/**
- * Generic method to enter data into a field using Actions class
- * @param element
- * @param value
- */
-
-public static void enterDataIntoField(WebElement element, String value) {
-	try {
-    Actions actions = new Actions(driver);
-    actions.moveToElement(element).click().sendKeys(value).perform();
-    fnWriteSteps("PASS", element + " is clicked and value set to: " + value);    
-	} catch (Exception e) {
-	    fnWriteSteps("FAIL", element + " is not clicked and value not set to: " + value);
-	    throw e;
-
+	public static void windows_Set_DropDown_Value(WebElement element, String strValue) {
+		element.sendKeys(strValue);
+		element.submit();
 	}
-}
+
+	/**
+	 * Generic method to enter data into a field using Actions class
+	 * 
+	 * @param element
+	 * @param value
+	 */
+
+	public static void enterDataIntoField(WebElement element, String value) {
+		try {
+			Actions actions = new Actions(driver);
+			actions.moveToElement(element).click().sendKeys(value).perform();
+			fnWriteSteps("PASS", element + " is clicked and value set to: " + value);
+		} catch (Exception e) {
+			fnWriteSteps("FAIL", element + " is not clicked and value not set to: " + value);
+			throw e;
+
+		}
+	}
+
+	/**
+	 * 4 Generic method to move to an element and click using Actions class
+	 * 
+	 * @param element
+	 */
+
+	public static void moveAndClick(WebElement element) {
+		Actions actions = new Actions(driver);
+		actions.moveToElement(element).click().perform();
+	}
+
+	/**
+	 * use @findby for the calendar icon use by for previous icon,next icon, month
+	 * and year displayed
+	 * 
+	 * 
+	 * @param calendarIcon
+	 * @param previousIcon
+	 * @param nextIcon
+	 * @param yearMonthLocator
+	 * @param dateFromExcel
+	 * 
+	 *                         Ex:
+	 * @FindBy(xpath = "//*[@AutomationId='Show Calendar']") WebElement
+	 *               calendarIcon; By prevBtn = By.name("Previous button"); By
+	 *               nextBtn = By.name("Next button"); By yearMonth =
+	 *               By.className("TextBlock");
+	 * 
+	 */
+
+	public static void selectDateInCalendar(WebElement calendarIcon, 
+	                       By previousIcon, 
+	                       By nextIcon, 
+	                       By yearMonthLocator, 
+	                       String dateFromExcel) {
+	    try {
+	        // Parse dd/MM/yyyy
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	        LocalDate targetDate = LocalDate.parse(dateFromExcel, formatter);
+
+	        // Click on calendar icon
+	        calendarIcon.click();
+
+	        // Loop until correct Month-Year is displayed
+	        while (true) {
+	            // Get all possible TextBlocks for month-year
+	            List<WebElement> textBlocks = driver.findElements(yearMonthLocator);
+
+	            String displayedMonthYear = "";
+	            for (WebElement block : textBlocks) {
+	                String txt = block.getText().trim();
+	                if (txt.matches("^[A-Za-z]+\\s\\d{4}$")) { // e.g., "September 2025"
+	                    displayedMonthYear = txt;
+	                    break;
+	                }
+	            }
+
+	            if (displayedMonthYear.isEmpty()) {
+	                throw new RuntimeException("Could not find displayed Month-Year in calendar.");
+	            }
+
+	            // Convert to YearMonth
+	            DateTimeFormatter monthYearFmt = DateTimeFormatter.ofPattern("MMMM yyyy", Locale.ENGLISH);
+	            YearMonth displayedYM = YearMonth.parse(displayedMonthYear, monthYearFmt);
+	            YearMonth targetYM = YearMonth.of(targetDate.getYear(), targetDate.getMonth());
+
+	            if (displayedYM.equals(targetYM)) {
+	                break; // Month-Year matched
+	            } else if (displayedYM.isBefore(targetYM)) {
+	                driver.findElement(nextIcon).click();
+	            } else {
+	                driver.findElement(previousIcon).click();
+	            }
+	        }
+
+	        // Select the Day (always re-locate to avoid stale elements)
+	        WebElement dayToSelect = driver.findElement(By.name(String.valueOf(targetDate.getDayOfMonth())));
+	        dayToSelect.click();
+
+	        fnWriteSteps("INFO", "Date selected: " + dateFromExcel);
+	    } catch (Exception e) {
+	        fnWriteSteps("FAIL", "Failed to select date: " + dateFromExcel + " | Error: " + e.getMessage());
+	        throw new RuntimeException("Failed to select date: " + dateFromExcel, e);
+	    }
+	}
+
 }

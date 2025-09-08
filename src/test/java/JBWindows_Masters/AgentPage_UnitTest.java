@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -23,47 +24,41 @@ public class AgentPage_UnitTest extends BaseTest {
 	APP_Menu refMenu;
 	CRM_Agents refAgents;
 	MessageBoxEffia refMessageBoxEffia;
-
-
-	@BeforeMethod
-	public void fn_Login_and_Open_Page() throws InterruptedException {
-        refLogin = new Login(driver);
+	
+	@BeforeClass
+	public void init() {
+		refLogin = new Login(driver);
 		refDashboard = new APP_Dashboard(driver);
 		refMenu = new APP_Menu(driver);
 		refAgents = new CRM_Agents(driver);
 		refMessageBoxEffia = new MessageBoxEffia(driver);
 		
-		
+	}
+
+
+	@BeforeMethod
+	public void fn_Login_and_Open_Page() throws InterruptedException {
+        	
 		String Username = ExcelUtils.fn_Get_Expected_Cell_Value_based_on_Execution_Status(
 				ApplicationVariables.LoginMasterExcel, "EnvironmentDetails", "Execution", "Yes Win", "Username");
 		String Password = ExcelUtils.fn_Get_Expected_Cell_Value_based_on_Execution_Status(
 				ApplicationVariables.LoginMasterExcel, "EnvironmentDetails", "Execution", "Yes Win", "Password");
 		refLogin.fnDoLogin(Username, Password);
-		
-		
-		refDashboard.clickMenuBtn();
+        fnWriteSteps("INFO", "Login method executed");
+        refDashboard.clickMenuBtn();
 		refMenu.OpenPage("Agents");
-		fnWriteSteps("INFO", "Application Open Successfully");
+		fnWriteSteps("INFO", "Agents Page Opened Successfully");
 
 	}
 	
 	
 	@AfterMethod
 	public void fnAfterMethod() {
-		refAgents.clickCloseButton();
-		refDashboard.logoutwithoutmenu();
-		refMessageBoxEffia.ExitApplication_Yes();
-		refLogin.ClickCloseButton();
+    	fnStartTestCase("fn Logout");
+    	refAgents.clickBackButton();
+    	refDashboard.logout();
 		fnWriteSteps("Pass", "Application Close Successfully");
 		fnEndTestCase();
-		try {
-			// ✅ Flush the report even if the test failed
-			if (RefReport != null) {
-				RefReport.flush();
-			}
-		} catch (Exception e) {
-			System.out.println("Error flushing report: " + e.getMessage());
-		}
 	}
 
 	@Test 

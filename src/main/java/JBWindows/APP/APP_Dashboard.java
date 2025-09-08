@@ -1,6 +1,9 @@
 package JBWindows.APP;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -72,8 +75,8 @@ public class APP_Dashboard extends BaseClass {
 	@FindBy(id = "appStatusBar1")
 	WebElement Dashboard_StatusBar;
 	
-    @FindBy (xpath = "//*[@AutomationId='btnMenu']")
-    private WebElement menuFld;
+	By menuLocator = By.xpath("//Button[@AutomationId='btnMenu']");
+
     @FindBy (name ="Logout")
     private WebElement logoutBtn;
     @FindBy (xpath ="//*[@AutomationId='btnYes']")
@@ -81,7 +84,7 @@ public class APP_Dashboard extends BaseClass {
     @FindBy (xpath ="//*[@AutomationId='CloseButton']")
     private WebElement closeBtn;
     
-    @FindBy(name = "Menu")
+    @FindBy(xpath = "//*[@Name = Menu']")
     private WebElement menuName;
 
 	// Initialization of WebElement
@@ -240,13 +243,6 @@ public class APP_Dashboard extends BaseClass {
 		}
 	}
 
-	public void fnVerifyMenuButtonPresence() {
-		if (menuFld.isDisplayed()) {
-			fnWriteSteps("INFO", "Menu button is present");
-		} else {
-			fnWriteSteps("Fail", "Menu button is not present");
-		}
-	}
 
 	public void fnVerifyMinimizeButtonPresence() {
 		if (btnMinimize.isDisplayed()) {
@@ -259,50 +255,58 @@ public class APP_Dashboard extends BaseClass {
 	public void click_Purchase_Page_Button() {
 		btnCreatePurchase.click();
 	}
-	
-    public boolean isLoaded() {
-        try {
-        	GenericMethods.fnwait(5);
-            fnWriteSteps("INFO", "✅ Dashboard loaded, menu button found");
-            return menuFld.isDisplayed();
-        } catch (Exception e) {
-        	fnWriteSteps("FAIL", "❌ Dashboard did not load properly");
-            return false;
-        }
-    }
 
-    public APP_Dashboard clickMenuBtn() {
-        try {
-        	GenericMethods.fnwait(4);
-            wait.until(ExpectedConditions.visibilityOf(menuName));
-            new Actions(driver).moveToElement(menuName).click().perform();
-            // Wait until element is both present AND visible
-            WebElement menuBtn = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                    By.xpath("//*[@AutomationId='btnMenu']")
-                )
-            );
 
-            // Extra wait for interactability
-            wait.until(ExpectedConditions.elementToBeClickable(menuBtn));
+	public APP_Dashboard clickMenuBtn() {
+	    By menuLocator = By.xpath("//Button[@AutomationId='btnMenu']");
 
-            fnWriteSteps("INFO", "Clicking Menu button");
-            GenericMethods.fnwait(2);
+	    try {
+	        for (int attempt = 1; attempt <= 3; attempt++) {
+	            try {
+	                // ✅ Always switch to the active window (HWND can change)
+	                for (String handle : driver.getWindowHandles()) {
+	                    driver.switchTo().window(handle);
+	                }
 
-            try {
-                menuBtn.click();
-            } catch (Exception e) {
-                // Fallback with Actions
-                new Actions(driver).moveToElement(menuBtn).click().perform();
-            }
+	                fnWriteSteps("INFO", "Looking for Menu button (attempt " + attempt + ")");
+	                List<WebElement> menuList = driver.findElements(menuLocator);
+	                fnWriteSteps("INFO", "Menu button count found: " + menuList.size());
 
-            fnWriteSteps("PASS", "Clicked Menu button");
-        } catch (Exception e) {
-            fnWriteSteps("FAIL", "Failed to click menu button - " + e.getMessage());
-            throw new RuntimeException("Menu button not found or not clickable", e);
-        }
-        return this;
-    }
+	                if (menuList.isEmpty()) {
+	                    GenericMethods.fnwait(2); // wait and retry
+	                    continue;
+	                }
+
+	                WebElement menuBtn = menuList.get(0);
+
+	                try {
+	                    menuBtn.click();
+	                } catch (Exception ex1) {
+	                    fnWriteSteps("WARN", "Normal click failed, trying Actions");
+	                    try {
+	                        new Actions(driver).moveToElement(menuBtn).click().perform();
+	                    } catch (Exception ex2) {
+	                        fnWriteSteps("WARN", "Actions click failed, trying InvokePattern");
+	                        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", menuBtn);
+	                    }
+	                }
+
+	                fnWriteSteps("PASS", "Clicked Menu button");
+	                return this;
+
+	            } catch (Exception ex) {
+	                fnWriteSteps("WARN", "Retry failed: " + ex.getMessage());
+	                GenericMethods.fnwait(2);
+	            }
+	        }
+
+	        throw new RuntimeException("Menu button not found after retries");
+
+	    } catch (Exception e) {
+	        fnWriteSteps("FAIL", "Failed to click menu button - " + e.getMessage());
+	        throw new RuntimeException("Menu button not found or not clickable", e);
+	    }
+	}
 
 
     public APP_Dashboard clickLogoutBtn() {

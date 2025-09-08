@@ -1,11 +1,8 @@
 package JBWindows_Masters;
 
-import java.io.IOException;
-
-import org.apache.log4j.xml.DOMConfigurator;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -26,40 +23,34 @@ public class BrandPage_UnitTest extends BaseClass {
 	APP_Menu refMenu;
 	INV_ProductBrands refBrands;
 	MessageBoxEffia refMessgBox;
-
-	public BrandPage_UnitTest() {
-		super();
-	}
 	
-	@BeforeMethod
-	public void fnBeforeMethod() throws InterruptedException, IOException {	
-		GenericMethods.fnStartTestCase("fn Login and Open Page");
-		DOMConfigurator.configure("log4j.xml");
-		GenericMethods.fnwait(24);
+	@BeforeClass
+	public void fnBeforeClass() {
 		refLogin = new Login(driver);
 		refDashboard = new APP_Dashboard(driver);
 		refMenu = new APP_Menu(driver);
 		refBrands = new INV_ProductBrands();
 		refMessgBox = new MessageBoxEffia(driver);
-		GenericMethods.fnwait(24);
+	}
+
+
+	
+	@BeforeMethod
+	public void fnBeforeMethod(){	
 		String Username = ExcelUtils.fn_Get_Expected_Cell_Value_based_on_Execution_Status(
 				ApplicationVariables.LoginMasterExcel, "EnvironmentDetails", "Execution", "Yes Win", "Username");
 		String Password = ExcelUtils.fn_Get_Expected_Cell_Value_based_on_Execution_Status(
 				ApplicationVariables.LoginMasterExcel, "EnvironmentDetails", "Execution", "Yes Win", "Password");
 		refLogin.fnDoLogin(Username, Password);
-		GenericMethods.fnwait(5);
-		driver.findElement(By.id("lblUserName")).click();
+        fnWriteSteps("INFO", "Login method executed");
 		refDashboard.clickMenuBtn();
-		GenericMethods.fnwait(2);
 		refMenu.OpenPage("Product Brands");
-		GenericMethods.fnwait(1);
-		fnWriteSteps("Pass", "Application Open Successfully");
-		GenericMethods.fnEndTestCase();
+		fnWriteSteps("INFO", "Product Brands Page Opened Successfully");
 
 	}
 
 	@Test 
-	public void fnVerifyFieldVisibility() throws IOException, InterruptedException {
+	public void fnVerifyFieldVisibility(){
 		GenericMethods.fnStartTestCase("Verify all the fields of Brand add entry are present or not ");
 		
 		refBrands.verifyFieldVisibility();	
@@ -68,7 +59,7 @@ public class BrandPage_UnitTest extends BaseClass {
 	}
 
 	@Test 
-	public void fnVerifyFieldEnableOrNot() throws IOException, InterruptedException {
+	public void fnVerifyFieldEnableOrNot(){
 		GenericMethods.fnStartTestCase("Verify all the fields of Brand add entry are enable or not");
 		
 		refBrands.verifyFieldEnableOrNot();	
@@ -76,7 +67,7 @@ public class BrandPage_UnitTest extends BaseClass {
 
 	}
 	@Test 
-	public void fnVerify_BrandCreation_for_withoutInternet() throws IOException, InterruptedException {	
+	public void fnVerify_BrandCreation_for_withoutInternet() {	
 		GenericMethods.fnStartTestCase("Verify Brand Creation for withoutInternet");	
 		String StrExcelPath = ApplicationVariables.MasterExcelPath;
 	    String StrSheetName = "Brand";
@@ -93,7 +84,7 @@ public class BrandPage_UnitTest extends BaseClass {
 
 	}
 	@Test 
-	public void fnVerifyBrandCreation_for_MultiDiscountFeature() throws IOException, InterruptedException {	
+	public void fnVerifyBrandCreation_for_MultiDiscountFeature(){	
 		GenericMethods.fnStartTestCase("Verify Brand Creation for MultiDiscountFeature");	
 		String StrExcelPath = ApplicationVariables.MasterExcelPath;
 	    String StrSheetName = "Brand";
@@ -111,7 +102,7 @@ public class BrandPage_UnitTest extends BaseClass {
 	}
 	
 	@Test 
-	public void fnVerifySuccessfulBrandCreation() throws IOException, InterruptedException {	
+	public void fnVerifySuccessfulBrandCreation() {	
 		GenericMethods.fnStartTestCase("Verify New Brand Creation");	
 		String StrExcelPath = ApplicationVariables.MasterExcelPath;
 	    String StrSheetName = "Brand";
@@ -129,7 +120,7 @@ public class BrandPage_UnitTest extends BaseClass {
 	}
 
 	@Test 
-	public void fnVerifyEditBrandFeature() throws InterruptedException, IOException {
+	public void fnVerifyEditBrandFeature(){
 		GenericMethods.fnStartTestCase("Verify Edit Brand Feature");
 		String StrExcelPath = ApplicationVariables.MasterExcelPath;
 	    String StrSheetName = "Brand";
@@ -175,14 +166,9 @@ public class BrandPage_UnitTest extends BaseClass {
 	@AfterMethod
 	public void fnAfterMethod() {
 		GenericMethods.fnStartTestCase("fn Logout");
-		refBrands.clickCloseButton();
-		GenericMethods.fnwait(2);
-		refDashboard.logoutwithoutmenu();
-		GenericMethods.fnwait(1);
-		refMessgBox.ExitApplication_Yes();
-		GenericMethods.fnwait(24);
-		refLogin.ClickCloseButton();	
+		refBrands.clickBackButton();
+		refDashboard.logout();
 		fnWriteSteps("Pass", "Application Close Successfully");
-		GenericMethods.fnEndTestCase();
+		fnEndTestCase();
 	}
 }

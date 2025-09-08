@@ -20,11 +20,6 @@ import commonClass.ExcelUtils;
 import commonClass.GenericMethods;
 
 public class ProductCategoriesPage_UnitTest extends BaseTest {
-//	Login login;
-//	APP_Dashboard dashboard;
-//	APP_Menu refMenu;
-//	INV_CategoryView categoryView;
-//	MessageBoxEffia refMessageBox;
 	Login login;
 	APP_Dashboard dashboard;
 	APP_Menu menu;
@@ -54,7 +49,7 @@ public class ProductCategoriesPage_UnitTest extends BaseTest {
         fnWriteSteps("INFO", "Login method executed");
         dashboard.clickMenuBtn();
         menu.OpenPage("Product Categories");
-		fnWriteSteps("INFO", "Product Categories Opened Successfully");	
+		fnWriteSteps("INFO", "Product Categories Page Opened Successfully");	
 	}
 
 	

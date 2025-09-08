@@ -1,0 +1,27 @@
+2025-09-08 16:56:45 INFO  commonClass.ConfigReader - Loaded config.properties from file system: config/config.properties
+2025-09-08 16:56:45 INFO  commonClass.ConfigReader - Loaded strings.xml from classpath: strings/strings.xml
+2025-09-08 16:57:02 INFO  Listeners.Listener - Configuration method passed: setUp
+2025-09-08 16:57:02 INFO  Listeners.Listener - Configuration method passed: initDriver
+2025-09-08 16:57:03 INFO  commonClass.BaseClass - Attempting registartion
+2025-09-08 16:57:03 INFO  commonClass.BaseClass - Selected Existing Organization
+2025-09-08 16:57:04 INFO  commonClass.BaseClass - Clicked on I Agree button
+2025-09-08 16:57:04 INFO  commonClass.BaseClass - Entered Organization Code: mytech
+2025-09-08 16:57:07 INFO  commonClass.BaseClass - Entered Account ID: 10166370
+2025-09-08 16:57:08 INFO  commonClass.BaseClass - Clicked on Verify button
+2025-09-08 16:57:08 INFO  commonClass.BaseClass - Registration completed successfully
+2025-09-08 16:57:08 INFO  commonClass.BaseClass - Attempting login with username: vaazid.khan@effiasoft.com
+2025-09-08 16:57:09 INFO  commonClass.BaseClass - Username field found and enabled
+2025-09-08 16:57:11 INFO  commonClass.BaseClass - Entered username: vaazid.khan@effiasoft.com
+2025-09-08 16:57:12 INFO  commonClass.BaseClass - Password field found and enabled
+2025-09-08 16:57:13 INFO  commonClass.BaseClass - Entered password
+2025-09-08 16:57:13 INFO  commonClass.BaseClass - Clicking Sign In button
+2025-09-08 16:57:16 INFO  Listeners.Listener - Test passed: Verify_JB_RegistrationExistingOrg
+2025-09-08 16:57:17 INFO  commonClass.BaseClass - Could not logout cleanly, forcing quit: Currently selected window has been closed (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'VAAZID-KHAN-E42', ip: '192.168.0.118', os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.9'
+Driver info: io.appium.java_client.windows.WindowsDriver
+Capabilities {appTopLevelWindow: 00060B96, javascriptEnabled: true, platform: WINDOWS, platformName: Windows}
+Session ID: 3C2BF935-5415-442C-8D29-B60913C47B19
+2025-09-08 16:57:17 INFO  commonClass.BaseClass - Test cleanup complete: Application closed
+2025-09-08 16:57:17 INFO  Listeners.Listener - Configuration method passed: tearDown

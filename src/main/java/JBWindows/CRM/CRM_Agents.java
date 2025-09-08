@@ -8,11 +8,13 @@ import java.awt.Robot;
 import java.io.IOException;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import commonClass.ApplicationVariables;
 import commonClass.BaseClass;
@@ -21,11 +23,10 @@ import commonClass.GenericMethods;
 import io.appium.java_client.windows.WindowsDriver;
 
 public class CRM_Agents extends BaseClass {
-	
-	
-    private static WindowsDriver driver;
-    private WebDriverWait wait;
-    
+
+	private static WindowsDriver driver;
+	private WebDriverWait wait;
+
 	// Header elements
 	@FindBy(id = "picClose")
 	WebElement btnClose;
@@ -37,56 +38,69 @@ public class CRM_Agents extends BaseClass {
 	// Master page elements
 	@FindBy(id = "CRM_Agents")
 	WebElement pageName;
-	@FindBy(id = "txtSearch")
+	@FindBy(name = "ALT + F")
 	WebElement txtSearch;
+	@FindBy(name = "Type to Search")
+	WebElement enterSearchText;
 	@FindBy(id = "grdAgents")
 	WebElement grdAgents;
 
 	// Entry OR Edit screen elements
-	@FindBy(id = "txtFirstName")
+	@FindBy(xpath = "//*[@AutomationId='txtFirstName']")
 	WebElement txtFirstName;
-	@FindBy(id = "txtLastName")
+	@FindBy(xpath = "//*[@AutomationId='txtLastName']")
 	WebElement txtLastName;
-	@FindBy(id = "txtPhoneNo")
+	@FindBy(xpath = "//*[@AutomationId='txtPhoneNo']")
 	WebElement txtPhoneNo;
-	@FindBy(id = "chkActive")
+	@FindBy(xpath = "//*[@AutomationId='checkboxImage']")
 	WebElement chkActive;
-	@FindBy(id = "txtEmail")
+	@FindBy(xpath = "//*[@AutomationId='txtEmail']")
 	WebElement txtEmail;
-	@FindBy(id = "dtDateOfBirth")
-	WebElement dtDateOfBirth;
-	@FindBy(id = "dtAnniversary")
-	WebElement dtAnniversary;
-	@FindBy(id = "txtArea")
+	@FindBy(xpath = "//*[@AutomationId='txtArea']")
 	WebElement txtArea;
-	@FindBy(id = "calcCommissionRate")
+	@FindBy(xpath = "//*[@AutomationId='txtCommissionRate']")
 	WebElement calcCommissionRate;
-	@FindBy(id = "memoAddress")
+	@FindBy(xpath = "//*[@AutomationId='txtAddress']")
 	WebElement memoAddress;
 
 	// Buttons elements
 	@FindBy(id = "btnListView")
 	WebElement btnListView;
-	@FindBy(id = "btnAdd")
+	@FindBy(name = "ALT + N")
 	WebElement btnAdd;
-	@FindBy(id = "btnSave")
+	@FindBy(name = "ALT + E")
 	WebElement btnEdit;
-	@FindBy(id = "btnSave")
+	@FindBy(name = "ALT + S")
 	WebElement btnSave;
-	@FindBy(id = "btnCancel")
+	@FindBy(name = "ALT + X")
 	WebElement btnCancel;
-	@FindBy(id = "btnOk")
+
+	@FindBy(name = "ALT + D")
+	WebElement btnDelete;
+
+	@FindBy(xpath = "//*[@AutomationId='btnYes']")
 	WebElement btnOk;
 	@FindBy(id = "grdAgents")
 	WebElement grdRecordList;
 	@FindBy(id = "lblNoData")
-	WebElement noAgentLabel; 
+	WebElement noAgentLabel;
+
+	@FindBy(name = "Backspace")
+	WebElement backBtn;
+
+	@FindBy(xpath = "(//*[@Name='Show Calendar'])[1]")
+	WebElement dobCalendarIcon;
+	@FindBy(xpath = "(//*[@Name='Show Calendar'])[2]")
+	WebElement anniversaryCalendarIcon;
+	By prevBtn = By.name("Previous button");
+	By nextBtn = By.name("Next button");
+	By yearMonth = By.className("TextBlock");
 
 	// WebElement Initialization method
 	public CRM_Agents(WindowsDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, 20);
-        PageFactory.initElements(driver, this);
+		this.driver = driver;
+		this.wait = new WebDriverWait(driver, 20);
+		PageFactory.initElements(driver, this);
 	}
 
 	// Actions
@@ -124,350 +138,317 @@ public class CRM_Agents extends BaseClass {
 		txtSearch.sendKeys(ExpectedRecordName);
 	}
 
-	// ----------31-Jan-2018----added by Moumita---------------
 	// The method for creating Agent with taking the input from excel
 	// Parameters are StartingRowNumber & LastRowNumber
-	
-	//This method for New Agent Creation :
-	public void createNewAgent(String FirstName,String LastName,String PhoneNum,String Email,String DOB,String Anniversary,String Area,String CommissionRate,String Address,String Inactive) {
-		          
-		             if (btnAdd.isDisplayed()) {
-			                 btnAdd.click();
-		            if (txtFirstName.isDisplayed()) {
-						txtFirstName.sendKeys(FirstName);
-					} else {
-						fnWriteSteps("Fail", "First Name field is not enable");
-					}
-					if (txtLastName.isDisplayed()) {
-						txtLastName.sendKeys(LastName);
-					} else {
-						fnWriteSteps("Fail", "Last Name field is not enable");
-					}
-					if (txtPhoneNo.isDisplayed()) {
-						txtPhoneNo.sendKeys(PhoneNum);
-					} else {
-						fnWriteSteps("Fail", "Phone No field is not enable");
-					}
-					if (txtEmail.isDisplayed()) {
-						txtEmail.sendKeys(Email);
-					} else {
-						fnWriteSteps("Fail", "Email field is not enable");
-					}
-					if (dtDateOfBirth.isDisplayed()) {
-						dtDateOfBirth.sendKeys(DOB);
-					} else {
-						fnWriteSteps("Fail", "Date Of Birth field is not enable");
-					}
-					if (dtAnniversary.isDisplayed()) {
-						dtAnniversary.sendKeys(Anniversary);
-					} else {
-						fnWriteSteps("Fail", "Annyversary field is not enable");
-					}
-					if (txtArea.isDisplayed()) {
-						txtArea.sendKeys(Area);
-					} else {
-						fnWriteSteps("Fail", "Area field is not enable");
-					}
-					if (calcCommissionRate.isDisplayed()) {
-						calcCommissionRate.sendKeys(CommissionRate);
-					} else {
-						fnWriteSteps("Fail", "Commission Rate field is not enable");
-					}
-					if (memoAddress.isDisplayed()) {
-						memoAddress.sendKeys(Address);
-					} else {
-						fnWriteSteps("Fail", "Address field is not enable");
-					}
-					if (chkActive.isSelected()) {
-						switch (Inactive) {
-						case "Inactive":
-							chkActive.click();
-							break;
-						}
-							
-				   
-						fnWriteSteps("Pass", "Active checkbox is checked by default ");
-					} else {
-						fnWriteSteps("Fail", "Active checkbox is not checked by default ");
-					}
 
-					clickSaveButton();
-					System.out.println("Agent has been created & Saved");
-					
-		  }
-	}
-	
-	 // This method for Validation of New Agent Creation :
-	     public boolean Verify_NewAgentCreation_SaveorNot(String FirstName) {
-		            	  
-				if (txtSearch.isDisplayed()) {
-					txtSearch.clear();
-					txtSearch.sendKeys(FirstName);
-				 } else {  fnWriteSteps("Fail", "AgentName is not displayed in UI");
-						   
-                }
-					 String Actual = driver.findElement(By.id("lblAgentName")).getAttribute("Name");
-					 if (Actual.substring(15,22).trim().substring(0,3).trim().equalsIgnoreCase(FirstName.trim().substring(0, 3).trim())) {
-								
-							   return true;
-							}
-							
-							   return false;
-						}	
-					
-					
-					
-	
-			
-	// This method is for verifying the Agent has been saved or not
-	// Parameters are StartingRowNumber & LastRowNumber
-	public void verifyAgentSavedOrNot(int StartingRowNumber, int LastRowNumber) throws IOException {
-		for (int StartFrom = StartingRowNumber; StartFrom <= LastRowNumber; StartFrom++) {
-			txtSearch.sendKeys(
-					ExcelUtils.fnGetExcelCellValue(ApplicationVariables.MasterExcelPath, "Agents", StartFrom, 0));
-			clickEditButton();
+	// This method for New Agent Creation :
 
-			try {
-				if (txtFirstName.getText().equals(
-						ExcelUtils.fnGetExcelCellValue(ApplicationVariables.MasterExcelPath, "Agents", StartFrom, 0))) {
-					fnWriteSteps("Pass", "First Name is saved successfully");
-				} else {
-					fnWriteSteps("Fail", "First Name is not saved");
-				}
-				if (txtLastName.getText().equals(
-						ExcelUtils.fnGetExcelCellValue(ApplicationVariables.MasterExcelPath, "Agents", StartFrom, 1))) {
-					fnWriteSteps("Pass", "Last Name is saved successfully");
-				} else {
-					fnWriteSteps("Fail", "Last Name is not saved");
-				}
-				if (txtPhoneNo.getText().equals(
-						ExcelUtils.fnGetExcelCellValue(ApplicationVariables.MasterExcelPath, "Agents", StartFrom, 2))) {
-					fnWriteSteps("Pass", "Phone No is saved successfully");
-				} else {
-					fnWriteSteps("Fail", "Phone No is not saved");
-				}
-				if (txtEmail.getText().equals(
-						ExcelUtils.fnGetExcelCellValue(ApplicationVariables.MasterExcelPath, "Agents", StartFrom, 3))) {
-					fnWriteSteps("Pass", "Email is saved successfully");
-				} else {
-					fnWriteSteps("Fail", "Email is not saved");
-				}
-				if (txtArea.getText().equals(
-						ExcelUtils.fnGetExcelCellValue(ApplicationVariables.MasterExcelPath, "Agents", StartFrom, 6))) {
-					fnWriteSteps("Pass", "Area is saved successfully");
-				} else {
-					fnWriteSteps("Fail", "Area is not saved");
-				}
-				
-				float commissionRateFromExcel = Float.parseFloat(ExcelUtils.fnGetExcelCellValue(ApplicationVariables.MasterExcelPath,
-						"Agents", StartFrom, 7));							
-				float commissionRateFromApp = Float.parseFloat(calcCommissionRate.getText());			
-				if (commissionRateFromApp == commissionRateFromExcel) {
-					fnWriteSteps("Pass", "Commission Rate is saved successfully");
-				} else {					
-					fnWriteSteps("Fail", "Commission Rate is not saved");
-				}
-				if (memoAddress.getText().equals(
-						ExcelUtils.fnGetExcelCellValue(ApplicationVariables.MasterExcelPath, "Agents", StartFrom, 8))) {
-					fnWriteSteps("Pass", "Address is saved successfully");
-				} else {
-					fnWriteSteps("Fail", "Address is not saved");
-				}
+	public void createNewAgent(String FirstName, String LastName, String PhoneNum, String Email, String DOB,
+			String Anniversary, String Area, String CommissionRate, String Address, String Inactive) {
 
-				clickSaveButton();
-				fnWriteSteps("Pass", "Agent is saved successfully");
-
-			} catch (Exception e) {
-				fnWriteSteps("Fail", "Agent is not saved successfully");
+		try {
+// Case 1: Agents exist → click Add
+			if (isElementPresent(btnAdd)) {
+				fnWriteSteps("Info", "Agents already exist → clicking Add button");
+				btnAdd.click();
+			} else {
+// Case 2: No agents → creation screen directly opened
+				fnWriteSteps("Info", "No agents exist → creation screen already displayed");
 			}
+
+// Now we should be on Create Agent screen
+			if (txtFirstName.isDisplayed()) {
+				txtFirstName.sendKeys(FirstName);
+			} else {
+				fnWriteSteps("Fail", "First Name field is not enabled");
+				Assert.fail("First Name field not enabled");
+			}
+
+			if (txtLastName.isDisplayed()) {
+				txtLastName.sendKeys(LastName);
+			} else {
+				fnWriteSteps("Fail", "Last Name field is not enabled");
+				Assert.fail("Last Name field not enabled");
+			}
+
+			if (dobCalendarIcon.isDisplayed()) {
+				fnWriteSteps("INFO", "Date Of Birth field is enabled");
+				GenericMethods.selectDateInCalendar(dobCalendarIcon, prevBtn, nextBtn, yearMonth, DOB);
+				fnWriteSteps("PASS", "Date Of Birth field is selected");
+			}
+
+			if (anniversaryCalendarIcon.isDisplayed()) {
+				fnWriteSteps("INFO", "Anniversary field is enabled");
+				GenericMethods.selectDateInCalendar(anniversaryCalendarIcon, prevBtn, nextBtn, yearMonth, Anniversary);
+				fnWriteSteps("PASS", "Anniversary field is selected");
+			}
+
+			if (calcCommissionRate.isDisplayed()) {
+				calcCommissionRate.click();
+				if (CommissionRate != null && !CommissionRate.trim().isEmpty()) {
+					String[] parts = CommissionRate.split("\\.");
+					String beforeDecimal = parts[0];
+					String afterDecimal = (parts.length > 1) ? parts[1] : "0";
+
+					Actions actions = new Actions(driver);
+					for (int i = 0; i < 4; i++) {
+						actions.sendKeys(Keys.ARROW_LEFT).perform();
+					}
+					actions.sendKeys(beforeDecimal).perform();
+					actions.sendKeys(Keys.ARROW_RIGHT).perform();
+					actions.sendKeys(afterDecimal).perform();
+
+					fnWriteSteps("Pass", "Commission Rate value entered: " + CommissionRate);
+				} else {
+					fnWriteSteps("Fail", "Commission Rate value is null or empty");
+					Assert.fail("Commission Rate value is null or empty");
+				}
+			}
+
+			if ("Inactive".equalsIgnoreCase(Inactive)) {
+				GenericMethods.moveAndClick(chkActive);
+				fnWriteSteps("Info", "Clicked on Active checkbox to set Inactive as per Excel data");
+			} else {
+				fnWriteSteps("Info", "Excel data is Active, skipping checkbox click");
+			}
+
+		} catch (Exception e) {
+			fnWriteSteps("Fail", "Failed to create new agent: " + e.getMessage());
+			Assert.fail("Exception in createNewAgent: " + e.getMessage());
 		}
+	}
+
+	/**
+	 * Utility method to check if element exists without throwing
+	 * NoSuchElementException
+	 */
+	private boolean isElementPresent(WebElement element) {
+		try {
+			return element.isDisplayed();
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	// This method for Validation of New Agent Creation :
+	public boolean Verify_NewAgentCreation_SaveorNot(String FirstName) {
+
+		if (txtSearch.isDisplayed()) {
+			txtSearch.click();
+			GenericMethods.enterDataIntoField(txtSearch, FirstName);
+			WebElement searchResult = driver.findElement(By.xpath("//*[contains(@Name,'" + FirstName + "')]"));
+			searchResult.isDisplayed();
+			return true;
+		} else {
+			fnWriteSteps("Fail", "AgentName is not displayed in UI");
+			return false;
+
+		}
+
 	}
 
 	// This method is for verifying the Agent edit
 	// Parameter is EditFieldOldValue, EditFieldName & EditedValue
-	
+
 	// This method for Agent Edit :
-	public void verifyAgentEdit(String OldFirstName,String FirstName,String LastName,String PhNo,String Email,String DOB,String Anniversary) {
-		
-		  txtSearch.sendKeys(OldFirstName);
-		  clickEditButton();
-		  GenericMethods.windows_Set_TextBoxValue(txtFirstName, FirstName);
-		  GenericMethods.windows_Set_TextBoxValue(txtLastName, LastName);
-		  GenericMethods.windows_Set_TextBoxValue(txtPhoneNo,PhNo );
-		  GenericMethods.windows_Set_TextBoxValue(txtEmail,Email);
-		  GenericMethods.windows_Set_TextBoxValue(dtDateOfBirth,DOB );
-		  GenericMethods.windows_Set_TextBoxValue(dtAnniversary,Anniversary);
-	    
-	      if (chkActive.isDisplayed()) {
-	    	  chkActive.click();
-				fnWriteSteps("Pass", "Active checkbox is not checked by default ");
-			} else {
-				fnWriteSteps("Fail", "Active checkbox is checked by default ");
-			}
-		  clickSaveButton();
-		  System.out.println("Agent has been Updated & Saved");
+	public void verifyAgentEdit(String OldFirstName, String FirstName, String LastName, String PhNo, String Email,
+			String DOB, String Anniversary) {
+		if (txtSearch.isDisplayed()) {
+			txtSearch.click();
+			GenericMethods.enterDataIntoField(txtSearch, OldFirstName);
+			fnWriteSteps("INFO", "Search button clicked and data is insterted");
+		}
+		clickEditButton();
+		fnWriteSteps("PASS", "Clicked on Edit button");
+		GenericMethods.windows_Set_TextBoxValue(txtFirstName, FirstName);
+		GenericMethods.windows_Set_TextBoxValue(txtLastName, LastName);
+		GenericMethods.windows_Set_TextBoxValue(txtPhoneNo, PhNo);
+		GenericMethods.windows_Set_TextBoxValue(txtEmail, Email);
+		GenericMethods.selectDateInCalendar(dobCalendarIcon, prevBtn, nextBtn, yearMonth, DOB);
+		GenericMethods.selectDateInCalendar(anniversaryCalendarIcon, prevBtn, nextBtn, yearMonth, Anniversary);
+
+		clickSaveButton();
+		System.out.println("Agent has been Updated & Saved");
 
 	}
-	 // This method for Validation of Agent Edit :
-	    public boolean Verify_AgentEdit_SaveorNot(String FirstName) {
-   	  
-			if (txtSearch.isDisplayed()) {
-				txtSearch.clear();
-				txtSearch.sendKeys(FirstName);
 
-			} else {
-				fnWriteSteps("Fail", "AgentName is not displayed in UI");
+	// This method for Validation of Agent Edit :
+	public boolean Verify_AgentEdit_SaveorNot(String FirstName) {
 
-			}
-			String Actual = driver.findElement(By.id("lblAgentName")).getAttribute("Name");
-			if (Actual.substring(14,21).equalsIgnoreCase(FirstName.trim())) {
-				
-			   return true;
-			}
-			   return false;
-		}	
+		if (txtSearch.isDisplayed()) {
+			txtSearch.click();
+			txtSearch.sendKeys(FirstName);
 
-		
-	    
-	// ---------3-Feb-2018 added by Moumita-------------------
-	    
+		} else {
+			fnWriteSteps("Fail", "AgentName is not displayed in UI");
+			Assert.fail();
+
+		}
+		String Actual = driver.findElement(By.id("lblAgentName")).getAttribute("Name");
+		if (Actual.substring(14, 21).equalsIgnoreCase(FirstName.trim())) {
+
+			return true;
+		}
+		return false;
+	}
+
 	// This method is to verify all the fields are visible or not
-	    
-        public void verifyFieldVisibility() {
-		
-		        if (btnAdd.isDisplayed()) {
-			          btnAdd.click();
-		
-                if (txtFirstName.isDisplayed()) {
-					fnWriteSteps("Pass", "First Name field is present");
-				} else {
-					fnWriteSteps("Fail", "First Name field is not present");
-				}
-                if (txtLastName.isDisplayed()) {
-					fnWriteSteps("Pass", "Last Name field is present");
-				} else {
-					fnWriteSteps("Fail", "Last Name field is not present");
-				}
-				if (txtPhoneNo.isDisplayed()) {
-					fnWriteSteps("Pass", "Phone No field is present");
-				} else {
-					fnWriteSteps("Fail", "Phone No field is not present");
-				}
-				if (txtEmail.isDisplayed()) {
-					fnWriteSteps("Pass", "Email field is present");
-				} else {
-					fnWriteSteps("Fail", "Email field is not present");
-				}
-				if (chkActive.isDisplayed()) {
-					fnWriteSteps("Pass", "Active checkbox is present");
-				} else {
-					fnWriteSteps("Fail", "Active checkbox is not present");
-				}
-				if (txtArea.isDisplayed()) {
-					fnWriteSteps("Pass", "Area field is present");
-				} else {
-					fnWriteSteps("Fail", "Area field is not present");
-				}
-				if (memoAddress.isDisplayed()) {
-					fnWriteSteps("Pass", "Address field is present");
-				} else {
-					fnWriteSteps("Fail", "Address field is not present");
-				}
-				if (calcCommissionRate.isDisplayed()) {
-					fnWriteSteps("Pass", "Commission Rate field is present");
-				} else {
-					fnWriteSteps("Fail", "Commission Rate field is not present");
-				}
-				if (dtDateOfBirth.isDisplayed()) {
-					fnWriteSteps("Pass", "Date of Birth field is present");
-				} else {
-					fnWriteSteps("Fail", "Date of Birth field is not present");
-				}
-				if (dtAnniversary.isDisplayed()) {
-					System.out.println(" Successfully all fields are Displayed ");
-					fnWriteSteps("Pass", "Anniversary field is present");
-				} else {
-					fnWriteSteps("Fail", "Anniversary field is not present");
-				}
+
+	public void verifyFieldVisibility() {
+
+		if (btnAdd.isDisplayed()) {
+			btnAdd.click();
+
+			if (txtFirstName.isDisplayed()) {
+				fnWriteSteps("Pass", "First Name field is present");
+			} else {
+				fnWriteSteps("Fail", "First Name field is not present");
+				Assert.fail();
 			}
+			if (txtLastName.isDisplayed()) {
+				fnWriteSteps("Pass", "Last Name field is present");
+			} else {
+				fnWriteSteps("Fail", "Last Name field is not present");
+				Assert.fail();
+			}
+			if (txtPhoneNo.isDisplayed()) {
+				fnWriteSteps("Pass", "Phone No field is present");
+			} else {
+				fnWriteSteps("Fail", "Phone No field is not present");
+				Assert.fail();
+			}
+			if (txtEmail.isDisplayed()) {
+				fnWriteSteps("Pass", "Email field is present");
+			} else {
+				fnWriteSteps("Fail", "Email field is not present");
+				Assert.fail();
+			}
+			if (chkActive.isDisplayed()) {
+				fnWriteSteps("Pass", "Active checkbox is present");
+			} else {
+				fnWriteSteps("Fail", "Active checkbox is not present");
+				Assert.fail();
+			}
+			if (txtArea.isDisplayed()) {
+				fnWriteSteps("Pass", "Area field is present");
+			} else {
+				fnWriteSteps("Fail", "Area field is not present");
+				Assert.fail();
+			}
+			if (memoAddress.isDisplayed()) {
+				fnWriteSteps("Pass", "Address field is present");
+			} else {
+				fnWriteSteps("Fail", "Address field is not present");
+				Assert.fail();
+			}
+			if (calcCommissionRate.isDisplayed()) {
+				fnWriteSteps("Pass", "Commission Rate field is present");
+			} else {
+				fnWriteSteps("Fail", "Commission Rate field is not present");
+				Assert.fail();
+			}
+			if (dobCalendarIcon.isDisplayed()) {
+				fnWriteSteps("PASS", "Date Of Birth field is enabled");
+
+			} else {
+				fnWriteSteps("Fail", "Date Of Birth field is not enable");
+				Assert.fail();
+
+			}
+			if (anniversaryCalendarIcon.isDisplayed()) {
+				fnWriteSteps("PASS", "Annyversary field is enabled");
+			} else {
+				fnWriteSteps("Fail", "Annyversary field is not enable");
+				Assert.fail();
+
+			}
+		}
 	}
-		 
 
 	// This method is to verify all the fields are enable or not
 
 	public void verifyFieldEnableOrNot() {
-		
-		       if (btnAdd.isDisplayed()) {
-			         btnAdd.click();
-		
-		        if (txtFirstName.isEnabled()) {
-					txtFirstName.click();
-					fnWriteSteps("Pass", "First Name field is enable");
-				} else {
-					fnWriteSteps("Fail", "First Name field is not enable");
-				}
-		        if (txtLastName.isDisplayed()) {
-					fnWriteSteps("Pass", "Last Name field is enable");
-				} else {
-					fnWriteSteps("Fail", "Last Name field is not enable");
-				}
-				if (chkActive.isEnabled()) {
-					chkActive.click();
-					fnWriteSteps("Pass", "Active field is enable");
-				} else {
-					fnWriteSteps("Fail", "Active field is not enable");
-				}
-				if (txtPhoneNo.isEnabled()) {
-					txtPhoneNo.click();
-					fnWriteSteps("Pass", "Phone No field is enable");
-				} else {
-					fnWriteSteps("Fail", "Phone No field is not enable");
-				}
-				if (txtEmail.isEnabled()) {
-					txtEmail.click();
-					fnWriteSteps("Pass", "Email field is enable");
-				} else {
-					fnWriteSteps("Fail", "Email field is not enable");
-				}
-				if (txtArea.isEnabled()) {
-					txtArea.click();
-					fnWriteSteps("Pass", "Area field is enable");
-				} else {
-					fnWriteSteps("Fail", "Area field is not enable");
-				}
-				if (memoAddress.isEnabled()) {
-					memoAddress.click();
-					fnWriteSteps("Pass", "Address field is enable");
-				} else {
-					fnWriteSteps("Fail", "Address field is not enable");
-				}
-				if (calcCommissionRate.isEnabled()) {
-					calcCommissionRate.click();
-					fnWriteSteps("Pass", "CommissionRate field is enable");
-				} else {
-					fnWriteSteps("Fail", "CommissionRate field is not enable");
-				}
-				if (dtDateOfBirth.isEnabled()) {
-					dtDateOfBirth.click();
-					fnWriteSteps("Pass", "Date of Birth field is enable");
-				} else {
-					fnWriteSteps("Fail", "Date of Birth field is not enable");
-				}
-				if (dtAnniversary.isEnabled()) {
-					dtAnniversary.click();
-					System.out.println(" Successfully all fields are Enabled ");
-					fnWriteSteps("Pass", "Anniversary field is enable");
-				} else {
-					fnWriteSteps("Fail", "Anniversary field is not enable");
-				}
+
+		if (btnAdd.isDisplayed()) {
+			btnAdd.click();
+
+			if (txtFirstName.isEnabled()) {
+				txtFirstName.click();
+				fnWriteSteps("Pass", "First Name field is enable");
+			} else {
+				fnWriteSteps("Fail", "First Name field is not enable");
+				Assert.fail();
 			}
+			if (txtLastName.isDisplayed()) {
+				fnWriteSteps("Pass", "Last Name field is enable");
+			} else {
+				fnWriteSteps("Fail", "Last Name field is not enable");
+				Assert.fail();
+			}
+			if (chkActive.isEnabled()) {
+				chkActive.click();
+				fnWriteSteps("Pass", "Active field is enable");
+			} else {
+				fnWriteSteps("Fail", "Active field is not enable");
+				Assert.fail();
+			}
+			if (txtPhoneNo.isEnabled()) {
+				txtPhoneNo.click();
+				fnWriteSteps("Pass", "Phone No field is enable");
+			} else {
+				fnWriteSteps("Fail", "Phone No field is not enable");
+				Assert.fail();
+			}
+			if (txtEmail.isEnabled()) {
+				txtEmail.click();
+				fnWriteSteps("Pass", "Email field is enable");
+			} else {
+				fnWriteSteps("Fail", "Email field is not enable");
+				Assert.fail();
+			}
+			if (txtArea.isEnabled()) {
+				txtArea.click();
+				fnWriteSteps("Pass", "Area field is enable");
+			} else {
+				fnWriteSteps("Fail", "Area field is not enable");
+				Assert.fail();
+			}
+			if (memoAddress.isEnabled()) {
+				memoAddress.click();
+				fnWriteSteps("Pass", "Address field is enable");
+			} else {
+				fnWriteSteps("Fail", "Address field is not enable");
+				Assert.fail();
+			}
+			if (calcCommissionRate.isEnabled()) {
+				calcCommissionRate.click();
+				fnWriteSteps("Pass", "CommissionRate field is enable");
+			} else {
+				fnWriteSteps("Fail", "CommissionRate field is not enable");
+				Assert.fail();
+			}
+			if (dobCalendarIcon.isEnabled()) {
+				fnWriteSteps("PASS", "Date Of Birth field is enabled");
+
+			} else {
+				fnWriteSteps("Fail", "Date Of Birth field is not enable");
+				Assert.fail();
+
+			}
+			if (anniversaryCalendarIcon.isEnabled()) {
+				fnWriteSteps("PASS", "Annyversary field is enabled");
+			} else {
+				fnWriteSteps("Fail", "Annyversary field is not enable");
+				Assert.fail();
+
+			}
+		}
 	}
-		
-	
+
 	/*
-	 * 28-June-18-----Added by Moumita
-	 * @purpose: This is the method to delete the record by delete icon from
-	 * Agent master page 
+	 * @purpose: This is the method to delete the record by delete icon from Agent
+	 * master page
+	 * 
 	 * @Parameter: element
 	 */
 	// This method for Access the Delete Button :
@@ -489,61 +470,79 @@ public class CRM_Agents extends BaseClass {
 		Actions builder1 = new Actions(driver);
 		builder1.click().build().perform();
 	}
- // This method for To click on YES Button :
+
+	// This method for To click on YES Button :
 	public void click_On_Yes_Button() {
 		driver.findElement(By.id("lblHeader")).click();
 		btnOk.click();
-	  }
-	/* 28-June-18-----Added by Moumita */
+	}
 	/* This is the method to delete the record by delete icon from master page */
-	
+
 	// This method for AgentDelete :
 	public void fnVerifyAgentDelete(String FirstName) {
-		txtSearch.sendKeys(FirstName);
-		fnVerifyMasterRecordDelete(grdRecordList);
-		btnOk.click();
-		System.out.println("Created Agent has been Deleted");
-	}
-	// This method for Validation of Agent Delete
-    public boolean Verify_AgentDelete_SaveorNot(String FirstName) {
-		
-		if(txtSearch.isDisplayed()) {
-			   txtSearch.clear();
-			   txtSearch.sendKeys(FirstName.trim());
-			  
-			
-			}else {
-				fnWriteSteps("Fail", "First name field is not enable");
-			}
-		String Actual = driver.findElement(By.id("lblAgentName")).getAttribute("Name");
-		if(!Actual.substring(15, 31).contains(FirstName.trim())){
-			
-			return true;
-			
-		} else {
-			return false;
-			
-		}
+		if (txtSearch.isDisplayed()) {
+			txtSearch.click();
+			GenericMethods.enterDataIntoField(txtSearch, FirstName);
 
-		
-		
+		}
+		fnWriteSteps("INFO", "Search button is cicked and data is insterted");
+		btnDelete.click();
+		btnOk.click();
+		fnWriteSteps("PASS", "Clicked on Delete button & clicked on OK button of popup");
+		GenericMethods.fnwait(3);
 	}
-	
-	/* 28-June-18-----Added by Moumita */
-	/* This is the method to verify the record has been deleted successfully or not*/
+
+	// This method for Validation of Agent Delete
+	public boolean Verify_AgentDelete_SaveorNot(String FirstName) {
+		try {
+			if (txtSearch.isDisplayed()) {
+				txtSearch.click();
+				GenericMethods.enterDataIntoField(txtSearch, FirstName);
+
+				WebElement searchResult = driver.findElement(By.xpath("//*[contains(@Name,'" + FirstName + "')]"));
+
+				if (searchResult.isDisplayed()) {
+					fnWriteSteps("FAIL", "Agent '" + FirstName + "' still exists after delete");
+					return false; // ❌ not deleted
+				} else {
+					fnWriteSteps("PASS", "Agent '" + FirstName + "' not visible after delete");
+					return true; // ✅ deleted
+				}
+			} else {
+				fnWriteSteps("FAIL", "Search box not displayed in UI");
+				return false; // ❌ treat as failure
+			}
+		} catch (Exception e) {
+			// If element is not found, it means delete succeeded
+			fnWriteSteps("PASS", "Agent '" + FirstName + "' not found after delete");
+			return true; // ✅ deleted
+		}
+	}
+
+	/*
+	 * This is the method to verify the record has been deleted successfully or not
+	 */
 	public void fnVerifyAgentDeleteSuccessfulOrNot(String strAgentName) {
 		txtSearch.clear();
 		txtSearch.sendKeys(strAgentName);
-		String gridNoDataLabel = null;			
+		String gridNoDataLabel = null;
 
 		WebElement messageEle = driver.findElement(By.id("lblNoData"));
-		gridNoDataLabel = messageEle.getAttribute("Name");		
+		gridNoDataLabel = messageEle.getAttribute("Name");
 		if (gridNoDataLabel.contains("No agent found")) {
 			fnWriteSteps("pass", "Record has been deleted successfully");
-		} else
-		{
+		} else {
 			fnWriteSteps("pass", "Record has not been deleted");
+			Assert.fail();
 		}
-		
+
+	}
+
+	public void clickBackButton() {
+		GenericMethods.fn_ConditionalWaitForElement(backBtn, 20);
+		backBtn.click();
+		GenericMethods.fnwait(5);
+		fnWriteSteps("INFO", "Back button is clicked");
+
 	}
 }

@@ -35,11 +35,11 @@ public class Listener extends BaseClass implements ITestListener, org.testng.ICo
 	
 	@Override
 	public void onTestStart(ITestResult result) {
-	    if (result.getMethod().isTest()) {   // only for @Test, skip @Before/@After
-	        String methodName = result.getMethod().getMethodName();
-	        String description = result.getMethod().getDescription();
-	        RefTest = RefReport.createTest(methodName, description);
-	    }
+//	    if (result.getMethod().isTest()) {   // only for @Test, skip @Before/@After
+//	        String methodName = result.getMethod().getMethodName();
+//	        String description = result.getMethod().getDescription();
+//	        RefTest = RefReport.createTest(methodName, description);
+//	    }
 	}
 
 	@Override

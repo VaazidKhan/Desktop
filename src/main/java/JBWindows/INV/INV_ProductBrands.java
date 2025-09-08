@@ -62,6 +62,9 @@ public class INV_ProductBrands extends BaseClass {
 	WebElement grdRecordList;
 	@FindBy(id = "lblNoData")
 	WebElement noBrandLabel; 
+	
+	@FindBy(name = "Backspace")
+	WebElement backBtn;
 
 	// WebElement Initialization
 	public INV_ProductBrands() {
@@ -373,6 +376,14 @@ public class INV_ProductBrands extends BaseClass {
 			fnWriteSteps("pass", "Record has not been deleted");
 		}
 		
+	}
+	
+	public void clickBackButton() {
+		GenericMethods.fn_ConditionalWaitForElement(backBtn, 20);
+		backBtn.click();
+		GenericMethods.fnwait(5);
+		fnWriteSteps("INFO", "Back button is clicked");
+
 	}
 
 }

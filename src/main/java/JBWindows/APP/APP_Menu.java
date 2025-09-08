@@ -29,6 +29,10 @@ public class APP_Menu extends BaseClass {
 	//@FindBy(name = "TRANSACTIONS")	WebElement Transactions;
 	@FindBy(xpath = "(//*[@AutomationId='ExpanderButton'])[1]")	WebElement Transactions;
 	@FindBy(name="Product Categories") WebElement ProductCategories;
+	@FindBy(name="Agents") WebElement Agents;
+	@FindBy(name="Product Brands") WebElement ProductBrands;
+
+	
 	
 	@FindBy(name = "Invoices")
 	private WebElement Invoices;
@@ -143,19 +147,16 @@ public void click_On_Home() {
 
 		// Masters - Retail Menu items
 		case "product categories":
-			GenericMethods.fnwait(3);
-			wait.until(ExpectedConditions.elementToBeClickable(Transactions));
-			new Actions(driver).moveToElement(Transactions).click().perform();
-			GenericMethods.fnwait(3);
-			wait.until(ExpectedConditions.elementToBeClickable(ProductCategories));
-			new Actions(driver).moveToElement(ProductCategories).click().perform();
-			
-//			SearchBox.sendKeys("SYS_WIN_Categories");
-//			clickSearchButton();
+		    GenericMethods.fn_ConditionalWaitForElement(Transactions, 30);
+			GenericMethods.moveAndClick(Transactions);
+			GenericMethods.fn_ConditionalWaitForElement(ProductCategories, 30);
+			GenericMethods.moveAndClick(ProductCategories);
 			break;
 		case "product brands":
-			SearchBox.sendKeys("SYS_WIN_Brands");
-			clickSearchButton();
+			GenericMethods.fn_ConditionalWaitForElement(Transactions, 30);
+			GenericMethods.moveAndClick(Transactions);
+			GenericMethods.fn_ConditionalWaitForElement(ProductBrands, 30);
+			GenericMethods.moveAndClick(ProductBrands);
 			break;
 		case "products":
 			SearchBox.sendKeys("SYS_WIN_Products");
@@ -186,11 +187,10 @@ public void click_On_Home() {
 			clickSearchButton();
 			break;
 		case "agents":
-			Transactions.click();
-			//write code for agents
-			
-			//SearchBox.sendKeys("SYS_WIN_Agents");
-			//clickSearchButton();
+			GenericMethods.fn_ConditionalWaitForElement(Transactions, 30);
+			GenericMethods.moveAndClick(Transactions);
+			GenericMethods.fn_ConditionalWaitForElement(Agents, 30);
+			GenericMethods.moveAndClick(Agents);
 			break;
 		case "departments":
 			SearchBox.sendKeys("SYS_WIN_Departments");

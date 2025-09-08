@@ -6,14 +6,15 @@
   </listeners>
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="JBWindows_Masters.LoginPage_UnitTest">
+      <class name="JBInstallation.JB_Registration_Test">
         <methods>
-          <include name="Verify_Successful_Login"/>
+          <include name="Verify_JB_RegistrationExistingOrg"/>
+          <include name="fnAfterMethod"/>
           <include name="tearDown"/>
           <include name="setUp"/>
           <include name="initDriver"/>
         </methods>
-      </class> <!-- JBWindows_Masters.LoginPage_UnitTest -->
+      </class> <!-- JBInstallation.JB_Registration_Test -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->
